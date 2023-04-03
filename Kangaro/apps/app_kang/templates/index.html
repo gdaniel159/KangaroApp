@@ -1,0 +1,323 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Kangaro Company {%endblock%}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/inicio.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Header -->
+
+    <div class="container">
+
+        <div class="row header mb-2">
+
+            <div class="col-md-6 col-sm-12 left-content d-flex align-items-center justify-content-center">
+    
+                <div class="content-img d-flex justify-content-center align-items-center">
+    
+                    <img src="{% static 'img/icon.png' %}" alt="" class="img-fluid" width="30%" height="20%">
+                    <img src="{% static 'img/word.png' %}" alt="" class="img-fluid" width="50%">
+                </div>
+    
+            </div>
+    
+            <div class="col-md-6 col-sm-12 right-content">
+                
+                <ul>
+
+                    <li class="link-element">
+
+                        <a href="">Inicio de sesion ></a>
+                        <ul>
+                            <li><a href="../login/">Usuario</a></li>
+                            <li><a href="../loginEmp/">Empresa</a></li>
+                        </ul>
+
+                    </li>
+
+                    <li class="link-element">
+
+                        <a href="../register/">Crear cuenta ></a>
+
+                    </li>
+
+                </ul>
+    
+            </div>
+    
+        </div>
+
+    </div>
+
+    <!-- Navbar -->
+
+    <div class="container">
+
+        <div class="row">
+
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-between">
+
+                <div class="container m-2">
+
+                    <div class="nav-title m-auto">
+
+                        <a class="navbar-brand" href="" style="margin-left:10px;">Kangaro Company Perú</a>
+
+                    </div>
+
+                </div>
+
+                <div class="container m-2">
+
+                    <button class="navbar-toggler m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+                        <span class="navbar-toggler-icon"></span>
+                        
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="#about">Nosotros</a>
+                            
+                            </li>
+                            
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="#history">Historia</a>
+
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="#">Contactanos</a>
+
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" href="#">Ayuda</a>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+    <!-- Contenido -->
+
+    <div class="container">
+
+        <!-- Imagen representativa -->
+
+        <div class="row">
+
+            <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 300px;" class="d-block w-100">
+
+        </div>
+
+        <hr style="border: 1px solid rgb(230, 230, 230);">
+
+        <!-- Texto Informativo -->
+
+        <div class="row" style="">
+
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae iure ratione nemo sequi magnam nobis facere blanditiis obcaecati! Atque labore ratione tempore, repellat, saepe omnis eum ipsa ab non ducimus inventore laboriosam recusandae consequatur! Et tempora sapiente id nulla consequatur excepturi officiis, delectus laboriosam doloremque doloribus veniam neque, accusamus cum.</p>
+
+        </div>
+
+        <hr style="border: 1px solid rgb(230, 230, 230);">
+
+        <!-- Sobre nosotros -->
+
+        <div class="row about" id="about">
+
+            <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
+
+                <div class="col-md-4" style="margin-left: 20px;">
+
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 100px;" class="d-block w-100">
+
+                </div>
+
+                <div class="col-md-8" style="margin-left: 20px;">
+
+                    <h3>Sobre nosotros</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel dignissimos enim sit, aliquam placeat, pariatur officia optio, animi cum nostrum natus id eaque mollitia ipsum delectus voluptatibus aperiam. Fugit vero exercitationem laudantium nesciunt? Tempora, facere officiis. Aspernatur quos error animi voluptatum, ullam modi illum dolor repellat? Enim quos quia reprehenderit?</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr style="border: 1px solid rgb(230, 230, 230);">
+
+        <!-- Imagen representativa -->
+
+        <div class="row">
+
+            <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 300px;" class="d-block w-100">
+
+        </div>
+
+        <hr style="border: 1px solid rgb(230, 230, 230);">
+
+        <!-- Historia -->
+
+        <div class="row historia" id="history">
+
+            <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
+
+                <div class="col-md-8" style="margin-left: 20px;">
+
+                    <h3>Historia</h3>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel dignissimos enim sit, aliquam placeat, pariatur officia optio, animi cum nostrum natus id eaque mollitia ipsum delectus voluptatibus aperiam. Fugit vero exercitationem laudantium nesciunt? Tempora, facere officiis. Aspernatur quos error animi voluptatum, ullam modi illum dolor repellat? Enim quos quia reprehenderit?</p>
+
+                </div>
+
+                <div class="col-md-4" style="margin-left: 20px;">
+
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 100px;" class="d-block w-100">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr style="border: 1px solid rgb(230, 230, 230);">
+
+        <!-- Historia -->
+
+        <div class="row register">
+
+            <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
+
+                <div class="col-md-5" style="margin-left: 20px;">
+
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 100px;" class="d-block w-100">
+
+                </div>
+
+                <div class="col-md-7" style="margin-left: 20px;">
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eius est debitis cumque repellendus perferendis aperiam architecto sequi deserunt unde eveniet, expedita quam excepturi hic nesciunt perspiciatis libero quia soluta!</p>
+
+                    <p style="width: 75%;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci, iure? Cumque nobis, doloremque corporis autem dolorum odit delectus vero minima debitis, est labore. Ullam, voluptas quam id dolores a explicabo?</p>
+
+                    <a href="register/" class="btn btn-primary">Registrarse</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr style="border: 1px solid rgb(230, 230, 230);">
+        
+        <!--  -->
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <h3 class="text-center mt-4">Titulo que no se cual es</h3>
+
+                <div class="container-img-company text-center mt-4">
+
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                    <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center mt-5">
+
+                    <div class="col-md-5 text-center p-2">
+
+                        <h3 class="">Title</h3>
+                        <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: auto;" class="d-block w-100">
+    
+                    </div>
+    
+                    <div class="col-md-7 p-2" style="margin-left: 20px;">
+                        
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eius est debitis cumque repellendus perferendis aperiam architecto sequi deserunt unde eveniet, expedita quam excepturi hic nesciunt perspiciatis libero quia soluta!</p>
+    
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="container">
+
+        <div class="row">
+
+            <footer class="bg-dark text-center text-white">
+
+                <!-- Grid container -->
+        
+                <!-- Section: Social media -->
+                <section class="mt-2 mb-2">
+        
+                    <!-- Facebook -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+            
+                    <!-- Twitter -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+            
+                    <!-- Google -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
+                    role="button"><i class="fab fa-google"></i></a>
+            
+                    <!-- Instagram -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+            
+                    <!-- Linkedin -->
+                    <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+        
+                </section>
+
+            </footer>
+
+            <!-- Copyright -->
+        
+            <div class="text-center p-3 text-white bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
+                  
+                © 2023 Copyright:
+              
+                <a class="text-muted" href="">kangaro.com</a>
+    
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

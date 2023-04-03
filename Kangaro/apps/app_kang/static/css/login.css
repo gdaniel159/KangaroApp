@@ -1,0 +1,17 @@
+.container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    height: 100vh;
+
+}
+
+.container-login{
+
+    border: 1px solid #000;
+    padding: 20px;
+    width: 25%;
+
+}

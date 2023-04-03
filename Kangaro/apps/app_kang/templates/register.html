@@ -1,0 +1,41 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Registro de usuarios {% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+
+    <div class="container-register">
+
+        <div class="container-user">
+
+            <form action="" method="post">
+        
+                {% csrf_token %}
+                {{form1.as_p}}
+                <input type="submit" value="Enviar" class="btn btn-primary form-control">
+            
+            </form>
+        
+        </div>
+        
+        <div class="container-company">
+        
+            <form action="" method="post">
+        
+                {% csrf_token %}
+                {{form2.as_p}}
+                <input type="submit" value="Enviar" class="btn btn-primary form-control">
+            
+            </form>
+        
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

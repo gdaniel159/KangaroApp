@@ -1,0 +1,34 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Error al logearse {%endblock%}
+{% block content %}
+
+<div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card text-center">
+
+                <div class="card-header">Ocurrio un error inesperado a la hora de logearte</div>
+
+                <div class="card-body">
+
+                    <p class="card-text">Porfavor ingrese un usuario o contraseña correctos para iniciar sesion</p>
+                    <a href="../inicio" class="btn btn-primary">Regresar al inicio</a>
+
+                </div>
+
+                <div class="card-footer text-muted">Si el error comuniquese al siguiente correo <a href="">example@example.com</a></div>
+
+            </div>
+              
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
