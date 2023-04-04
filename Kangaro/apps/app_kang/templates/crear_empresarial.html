@@ -1,0 +1,32 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Registro de usuarios {% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row w-100 p-4">
+
+        <h2 style="text-decoration: underline; margin-bottom: 20px;">Registro de una cuenta</h2>
+
+        <div class="col-md-6 m-auto">
+
+            <form action="" method="post">
+        
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Enviar" class="btn btn-primary form-control">
+                <a href="{% url 'intranet' %}?admin={{admin}}" class="btn btn-danger mt-2 form-control" style="font-weight: bold; color: #fff;">Ir a la Intranet</a>
+            
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

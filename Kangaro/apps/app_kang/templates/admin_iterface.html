@@ -57,7 +57,7 @@
                     <div class="container p-2">
         
                         <span class="navbar-brand mb-0 h1">Kangaro Company Perú</span>
-                        <span class="navbar-brand mb-0 h1"><a href="#" style="text-decoration: none; color: #fff;" class="link_emp">Crear usuarios empresariales</a></span>
+                        <span class="navbar-brand mb-0 h1"><a href="{% url 'registro_empresa' %}" style="text-decoration: none; color: #fff;" class="link_emp">Crear usuarios empresariales</a></span>
         
                     </div>
                     
@@ -179,7 +179,7 @@
                                 <td>{{x.rucEmp}}</td>
                                 <td>{{x.userEmp}}</td>
                                 <td>{{x.passwordEmp}}</td>
-                                <td><a href="">{{x.url_sitioEmp}}</a></td>
+                                <td><a href="{{x.url_sitioEmp}}" target="_blank">{{x.url_sitioEmp}}</a></td>
                                 <td class="text-center">
 
                                     <a href="" class="btn btn-primary mb-2 d-block">Editar</a>

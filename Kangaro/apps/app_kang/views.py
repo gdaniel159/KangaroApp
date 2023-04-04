@@ -1,9 +1,10 @@
 from django.shortcuts import  render, redirect
-from .forms import LoginForm, RegisterFormUser
+from .forms import LoginForm, RegisterFormUser, RegisterFormEmp
 from .models import Usuario, Empresa, Administrador
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.urls import reverse
+from urllib.parse import urlencode
 
 def index(request):
 
@@ -31,7 +32,8 @@ def loginForm(request):
                 
                 if user:
 
-                    return HttpResponse(user.nombresUs)
+                    # return HttpResponse(user.nombresUs)
+                    return redirect('inicio')
                 
                 else:
 
@@ -43,10 +45,8 @@ def loginForm(request):
 
                 if admin:
 
-                    userMD = Usuario.objects.all()
-                    empMD = Empresa.objects.all()
-
-                    return render(request,'admin_iterface.html',{'admin':admin,'user':userMD,'emp':empMD})
+                    url = reverse('intranet') + '?' + urlencode({'admin': admin.userAdm})
+                    return redirect(url)
 
                 else:
 
@@ -101,10 +101,56 @@ def delete_user(request,id):
 
     userDelete = Usuario.objects.get(id_usuario=id)
     userDelete.delete()
-    return redirect('../../login')
+    return redirect('intranet')
 
 def delete_emp(request,id):
 
     userEmp = Empresa.objects.get(id_empresa=id)
     userEmp.delete()
-    return redirect('../../login')
+    return redirect('intranet')
+
+def intranet(request):
+
+    userMD = Usuario.objects.all()
+    empMD = Empresa.objects.all()
+    admin = request.GET.get('admin',None)
+
+    context = {
+
+        'user':userMD,
+        'emp':empMD,
+        'admin':admin
+
+    }
+    
+    return render(request,'admin_iterface.html',context)
+
+def registerEmpresarial(request):
+
+    form = RegisterFormEmp()
+
+    if request.method == 'POST':
+
+        form = RegisterFormEmp(request.POST)
+
+        if form.is_valid():
+
+            data = form.save(commit=True)
+            data.save()
+
+            return redirect('intranet')
+        
+        else:
+
+            return HttpResponse("Registro Invalido")      
+
+    admin = request.GET.get('admin',None)
+
+    context = {
+
+        'form':form,
+        'admin':admin
+
+    }
+
+    return render(request,'crear_empresarial.html',context)
