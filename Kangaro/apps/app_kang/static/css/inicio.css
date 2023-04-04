@@ -53,29 +53,6 @@
     border-bottom: 3px solid #000;
 }
 
-.right-content ul li ul {
-    display: none;
-    line-height: 35px;
-    border: 1px solid rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.637);
-    width: 160px;
-}
-
-.right-content ul li:hover ul {
-
-    display: block;
-    position: fixed;
-
-}
-
-.right-content ul li ul li a {
-    color: #fff;
-}
-
-.right-content ul li ul li a:hover {
-    border-bottom: 3px solid rgb(255, 42, 42);
-}
-
 .content-text{
 
     margin-left: 20px;

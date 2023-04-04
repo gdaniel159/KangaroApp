@@ -1,6 +1,5 @@
 from django import forms
 from .models import Empresa,Usuario
-from django.contrib.auth.forms import UserCreationForm
 
 class LoginForm(forms.Form):
 
@@ -13,6 +12,7 @@ class LoginForm(forms.Form):
 
     usuario = forms.CharField(max_length=50)
     password = forms.CharField(widget=forms.PasswordInput)
+    account_type = forms.ChoiceField(choices=[('user', 'User'), ('admin', 'Admin'), ('company', 'Company')])
 
 
 class RegisterFormUser(forms.ModelForm):

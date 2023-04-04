@@ -69,3 +69,9 @@
 .right-content ul li ul li a:hover {
     border-bottom: 3px solid rgb(255, 42, 42);
 }
+
+.link_emp:hover{
+
+    border-bottom: 3px solid #fff;
+
+}

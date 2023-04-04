@@ -1,8 +1,8 @@
 {% extends "contenido.html" %}
 {% load static %}
-{% block title %} Dashboard {%endblock%}
+{% block title %} Kangaro Company {%endblock%}
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
 {% endblock %}
 {% block content %}
 
@@ -34,7 +34,7 @@
 
                         <li class="link-element">
 
-                            <a href="../loginAdm">Cerrar sesion ></a>
+                            <a href="../login">Cerrar sesion ></a>
 
                         </li>
 
@@ -54,10 +54,10 @@
 
                 <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-between">
 
-                    <div class="container">
+                    <div class="container p-2">
         
                         <span class="navbar-brand mb-0 h1">Kangaro Company Perú</span>
-                        <span class="navbar-brand mb-0 h1">Inspeccionar</span>
+                        <span class="navbar-brand mb-0 h1"><a href="#" style="text-decoration: none; color: #fff;" class="link_emp">Crear usuarios empresariales</a></span>
         
                     </div>
                     
@@ -71,7 +71,7 @@
 
         <div class="container">
 
-            <div class="row">
+            <div class="row m-5">
 
                 <h2 class="mb-3 mt-3">Gestion de Usuarios</h2>
 
@@ -138,7 +138,7 @@
 
         <div class="container">
 
-            <div class="row">
+            <div class="row m-5">
 
                 <h2 class="mb-3">Gestion de empresas</h2>
 
@@ -146,7 +146,7 @@
 
                 <div class="col-md-12">
 
-                    <table class="table table-hover table-responsive">
+                    <table class="table table-hover table-responsive text-center">
 
                         <thead class="table-dark">
 

@@ -1,17 +1,17 @@
 from django.shortcuts import  render, redirect
-from .forms import LoginForm, RegisterFormUser, RegisterFormEmp
+from .forms import LoginForm, RegisterFormUser
 from .models import Usuario, Empresa, Administrador
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 def index(request):
 
     return render(request,'index.html')
 
-def loginFormUser(request):
+def loginForm(request):
 
     form = LoginForm()
-
-    # Retrive objects Usuario (user and password)
 
     if request.method == 'POST':
 
@@ -19,113 +19,64 @@ def loginFormUser(request):
 
         if form.is_valid():
 
-            user = form.cleaned_data['usuario']
+            username = form.cleaned_data['usuario']
             password = form.cleaned_data['password']
-
-            try:
-
-                student = Usuario.objects.get(userUs=user,passwordUs=password)
-                # admins = Administrador.objects.get(userAdm=user,passwordAdm=password)
-                # company = Empresa.objects.get(userEmp=user,passwordEmp=password)
-
-                return render(request,'paginas_inicio/bienvenida_usuario.html',{'student':student})
+            account_type = form.cleaned_data['account_type']
             
-            except:
+            user = None
 
-                return render(request,"login_error.html")
+            if account_type == 'user':
 
-    context = {
+                user = Usuario.objects.filter(userUs=username, passwordUs=password).first()
+                
+                if user:
 
-        'form':form,
+                    return HttpResponse(user.nombresUs)
+                
+                else:
 
-    }
+                    messages.error(request, "Invalid username or password.")
+                    
+            elif account_type == 'admin':
 
-    return render(request,'login.html',context)
+                admin = Administrador.objects.get(userAdm=username, passwordAdm=password)
 
-def loginFormAdm(request):
+                if admin:
 
-    form = LoginForm()
+                    userMD = Usuario.objects.all()
+                    empMD = Empresa.objects.all()
 
-    # Retrive objects Usuario (user and password)
+                    return render(request,'admin_iterface.html',{'admin':admin,'user':userMD,'emp':empMD})
 
-    if request.method == 'POST':
+                else:
 
-        form = LoginForm(request.POST)
+                    messages.error(request, "Invalid username or password.")
+                    
+            elif account_type == 'company':
 
-        userMD = Usuario.objects.all()
-        empMD = Empresa.objects.all()
+                emp = Empresa.objects.filter(userEmp=username, passwordEmp=password).first()
 
+                if emp:
 
+                    return HttpResponse(emp.nombreEmp)
 
-        if form.is_valid():
+                else:
 
-            user = form.cleaned_data['usuario']
-            password = form.cleaned_data['password']
+                    messages.error(request, "Invalid username or password.")
+                    
+            else:
 
-            try:
-
-                # student = Usuario.objects.get(userUs=user,passwordUs=password)
-                admins = Administrador.objects.get(userAdm=user,passwordAdm=password)
-                # company = Empresa.objects.get(userEmp=user,passwordEmp=password)
-
-                return render(request,'paginas_inicio/bienvenida_administrador.html',{'admin':admins,'user':userMD,'emp':empMD})
-            
-            except:
-
-                return render(request,"login_error.html")
-
-    context = {
-
-        'form':form,
-
-    }
-
-    return render(request,'login.html',context)
-
-def loginFormEmp(request):
-
-    form = LoginForm()
-
-    # Retrive objects Usuario (user and password)
-
-    if request.method == 'POST':
-
-        form = LoginForm(request.POST)
-
-        if form.is_valid():
-
-            user = form.cleaned_data['usuario']
-            password = form.cleaned_data['password']
-
-            try:
-
-                # student = Usuario.objects.get(userUs=user,passwordUs=password)
-                # admins = Administrador.objects.get(userAdm=user,passwordAdm=password)
-                company = Empresa.objects.get(userEmp=user,passwordEmp=password)
-
-                return render(request,'paginas_inicio/bienvenida_empresa.html',{'company':company})
-            
-            except:
-
-                return render(request,"login_error.html")
-
-    context = {
-
-        'form':form,
-
-    }
-
-    return render(request,'login.html',context)
+                messages.error(request, "Invalid account type.")
+    
+    return render(request, 'login.html', {'form': form})
 
 def registerForm(request):
 
     form1 = RegisterFormUser()
-    form2 = RegisterFormEmp()
 
     if request.method == 'POST':
 
         form1 = RegisterFormUser(request.POST)
-        form2 = RegisterFormEmp(request.POST)
 
         if form1.is_valid():
 
@@ -133,22 +84,13 @@ def registerForm(request):
             data.save()
 
             return redirect('../login')
-
-        elif form2.is_valid():
-
-            data = form2.save(commit=True)
-            data.save()
-
-            return redirect('../loginEmp')
-
         else:
 
             return HttpResponse("Registro Invalido")      
 
     context = {
 
-        'form1':form1,
-        'form2':form2
+        'form1':form1
 
 
     }
@@ -159,11 +101,10 @@ def delete_user(request,id):
 
     userDelete = Usuario.objects.get(id_usuario=id)
     userDelete.delete()
-    # return redirect("paginas_inicio/bienvenida_administrador.html")
-    return HttpResponse("Usuario eliminado")
+    return redirect('../../login')
 
 def delete_emp(request,id):
 
     userEmp = Empresa.objects.get(id_empresa=id)
     userEmp.delete()
-    return HttpResponse("Usuario eliminado")
+    return redirect('../../login')

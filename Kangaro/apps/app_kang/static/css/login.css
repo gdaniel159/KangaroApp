@@ -3,15 +3,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     height: 100vh;
 
 }
 
-.container-login{
+label{
 
-    border: 1px solid #000;
-    padding: 20px;
-    width: 25%;
+    margin-bottom: 10px;
 
 }
