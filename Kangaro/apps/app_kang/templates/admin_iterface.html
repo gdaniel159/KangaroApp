@@ -115,7 +115,7 @@
                                 <td>{{x.passwordUs}}</td>
                                 <td class="text-center">
 
-                                    <a href="" class="btn btn-primary mb-2 d-block">Editar</a>
+                                    <a href="{% url 'editar_usuario' id=x.id_usuario %}" class="btn btn-primary mb-2 d-block">Editar</a>
                                     <a href="../delete_user/{{x.id_usuario}}" class="btn btn-danger">Delete</a>
 
                                 </td>
@@ -182,7 +182,7 @@
                                 <td><a href="{{x.url_sitioEmp}}" target="_blank">{{x.url_sitioEmp}}</a></td>
                                 <td class="text-center">
 
-                                    <a href="" class="btn btn-primary mb-2 d-block">Editar</a>
+                                    <a href="{% url 'editar_empresa' id=x.id_empresa %}" class="btn btn-primary mb-2 d-block">Editar</a>
                                     <a href="../delete_emp/{{x.id_empresa}}" class="btn btn-danger">Delete</a>
 
                                 </td>

@@ -1,0 +1,70 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Kangaro Company {%endblock%}
+{% block styles %}
+    <!-- <link rel="stylesheet" href="{% static 'css/admin.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+    <div class="container p-5 d-flex justify-content-center align-items-center" style="height: 100vh;">
+
+        <div class="row w-100 p-5">
+
+            <div class="col-md-6 m-auto">
+
+                <form action="{% url 'actualizar_datos_empresa' id=emp.id_empresa %}" method="post">
+
+                    {% csrf_token %}
+    
+                    <div class="form-group">
+    
+                        <label for="nombre">Nombre Empresa: </label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" value="{{emp.nombreEmp}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="correo">Correo Empresa: </label>
+                        <input type="email" name="correo" id="correo" class="form-control" value="{{emp.correoEmp}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="dni">RUC: </label>
+                        <input type="text" name="ruc" id="ruc" class="form-control" value="{{emp.rucEmp}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="usuario">Usuario empresa: </label>
+                        <input type="text" name="usuario" id="usuario" class="form-control" value="{{emp.userEmp}}">
+    
+                    </div>
+
+                    <div class="form-group">
+    
+                        <label for="url">Url: </label>
+                        <input type="text" name="url" id="url" class="form-control" value="{{emp.url_sitioEmp}}">
+    
+                    </div>
+
+                    <div class="form-group mt-3">
+    
+                        <input type="submit" class="btn btn-success form-control" value="Actualizar datos">
+                        <a href="../intranet" class="btn btn-primary mt-3 form-control">Back</a>
+    
+                    </div>
+    
+                </form>
+    
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}

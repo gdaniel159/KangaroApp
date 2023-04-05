@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
 from urllib.parse import urlencode
+from django.shortcuts import render, get_object_or_404
 
 def index(request):
 
@@ -154,3 +155,57 @@ def registerEmpresarial(request):
     }
 
     return render(request,'crear_empresarial.html',context)
+
+def editar_usuario(request,id):
+
+    user = Usuario.objects.get(id_usuario=id)
+
+    context = {
+
+        'user':user
+
+    }
+
+    return render(request,'editar_usuario.html',context)
+
+def editar_empresa(request,id):
+
+    emp = Empresa.objects.get(id_empresa=id)
+
+    context = {
+
+        'emp':emp
+
+    }
+
+    return render(request,'editar_empresa.html',context)
+
+def actualizar_datos(request,id):
+
+    objeto = get_object_or_404(Usuario, id_usuario = id)
+
+    if request.method == 'POST':
+
+        objeto.nombresUs = request.POST.get('nombre', '')
+        objeto.correoUs = request.POST.get('correo', '')
+        objeto.dniUs = request.POST.get('dni', '')
+        objeto.sexoUs = request.POST.get('sexo', '')
+        objeto.userUs = request.POST.get('usuario', '')
+        objeto.save()
+
+        return redirect('intranet')
+    
+def actualizar_datos_emp(request,id):
+
+    objeto = get_object_or_404(Empresa, id_empresa = id)
+
+    if request.method == 'POST':
+
+        objeto.nombreEmp = request.POST.get('nombre', '')
+        objeto.correoEmp = request.POST.get('correo', '')
+        objeto.rucEmp = request.POST.get('ruc', '')
+        objeto.userEmp = request.POST.get('usuario', '')
+        objeto.url_sitioEmp = request.POST.get('url', '')
+        objeto.save()
+
+        return redirect('intranet')

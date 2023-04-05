@@ -1,0 +1,70 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Kangaro Company {%endblock%}
+{% block styles %}
+    <!-- <link rel="stylesheet" href="{% static 'css/admin.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+    <div class="container p-5 d-flex justify-content-center align-items-center" style="height: 100vh;">
+
+        <div class="row w-100 p-5">
+
+            <div class="col-md-6 m-auto">
+
+                <form action="{% url 'actualizar_datos' id=user.id_usuario %}" method="post">
+
+                    {% csrf_token %}
+    
+                    <div class="form-group">
+    
+                        <label for="nombre">Nombre: </label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" value="{{user.nombresUs}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="correo">Correo: </label>
+                        <input type="email" name="correo" id="correo" class="form-control" value="{{user.correoUs}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="dni">DNI: </label>
+                        <input type="text" name="dni" id="dni" class="form-control" value="{{user.dniUs}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="sexo">Sexo: </label>
+                        <input type="text" name="sexo" id="sexo" class="form-control" value="{{user.sexoUs}}">
+    
+                    </div>
+    
+                    <div class="form-group">
+    
+                        <label for="usuario">Usuario: </label>
+                        <input type="text" name="usuario" id="usuario" class="form-control" value="{{user.userUs}}">
+    
+                    </div>
+
+                    <div class="form-group mt-3">
+    
+                        <input type="submit" class="btn btn-success form-control" value="Actualizar datos">
+                        <a href="../intranet" class="btn btn-primary mt-3 form-control">Back</a>
+    
+                    </div>
+    
+                </form>
+    
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}

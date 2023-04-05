@@ -12,6 +12,12 @@ urlpatterns = [
     path('registro_empresa/',views.registerEmpresarial, name='registro_empresa'),
     
     path('delete_user/<int:id>/',views.delete_user),
-    path('delete_emp/<int:id>',views.delete_emp)
+    path('delete_emp/<int:id>',views.delete_emp),
+
+    path('editar_usuario/<int:id>',views.editar_usuario, name='editar_usuario'),
+    path('editar_empresa/<int:id>',views.editar_empresa, name='editar_empresa'),
+    
+    path('actualizar_datos/<int:id>',views.actualizar_datos, name='actualizar_datos'),
+    path('actualizar_datos_empresa/<int:id>',views.actualizar_datos_emp, name='actualizar_datos_empresa')
 
 ]
