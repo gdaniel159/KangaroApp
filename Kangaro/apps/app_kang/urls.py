@@ -7,9 +7,10 @@ urlpatterns = [
     path('inicio/',views.index,name='inicio_url'),
     path('login/',views.loginForm,name='login_usuarios'),
     path('register/', views.registerForm, name='register_usuarios'),
+    path('registro_empresa/',views.registerEmpresarial, name='registro_empresa'),
     # Se debe arreglar eso de que al acceder a esa ruta no se pueda acceder a esto mismo
     path('intranet/',views.intranet,name='intranet'),
-    path('registro_empresa/',views.registerEmpresarial, name='registro_empresa'),
+    path('homepage_user/',views.user_homepage, name="homepage_user"),
     
     path('delete_user/<int:id>/',views.delete_user),
     path('delete_emp/<int:id>',views.delete_emp),

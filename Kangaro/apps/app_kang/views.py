@@ -11,6 +11,34 @@ def index(request):
 
     return render(request,'index.html')
 
+def intranet(request):
+
+    userMD = Usuario.objects.all()
+    empMD = Empresa.objects.all()
+    admin = request.GET.get('admin',None)
+
+    context = {
+
+        'user':userMD,
+        'emp':empMD,
+        'admin':admin
+
+    }
+    
+    return render(request,'admin_iterface.html',context)
+
+def user_homepage(request):
+
+    userMD = Usuario.objects.all()
+
+    context = {
+
+        'user':userMD,
+
+    }
+
+    return render(request,'user_interface.html',context)
+
 def loginForm(request):
 
     form = LoginForm()
@@ -34,7 +62,7 @@ def loginForm(request):
                 if user:
 
                     # return HttpResponse(user.nombresUs)
-                    return redirect('inicio')
+                    return redirect('homepage_user')
                 
                 else:
 
@@ -109,22 +137,6 @@ def delete_emp(request,id):
     userEmp = Empresa.objects.get(id_empresa=id)
     userEmp.delete()
     return redirect('intranet')
-
-def intranet(request):
-
-    userMD = Usuario.objects.all()
-    empMD = Empresa.objects.all()
-    admin = request.GET.get('admin',None)
-
-    context = {
-
-        'user':userMD,
-        'emp':empMD,
-        'admin':admin
-
-    }
-    
-    return render(request,'admin_iterface.html',context)
 
 def registerEmpresarial(request):
 
