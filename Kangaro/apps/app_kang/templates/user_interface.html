@@ -6,13 +6,121 @@
 {% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
 
     <div class="row">
 
-        <div class="col-md-12">
+        <!-- Header -->
 
-            <h2>Usuario {{user.nombresUs}}</h2>
+        <div class="container">
+
+            <div class="row"  style="margin: 0px 20px 0px 20px;">
+
+                <div class="col-md-6 col-sm-12 d-flex align-items-center">
+
+                    <a href="/"><i class='fas fa-bars'></i></a>
+                    <img src="" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px; margin:0 20px 0 20px;">
+                    <p>Usuario</p>
+    
+                </div>
+    
+                <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">
+    
+                    <div class="right-content">
+    
+                        <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
+    
+                            <h2>KANGARO CORP</h2>
+                            <p>Conectate con el mundo</p>
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Navbar -->
+
+        <div class="container">
+
+            <div class="row">
+
+                <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+
+                    <ul class="navbar-nav m-3">
+
+                        <li class="nav-item">
+
+                            <a href="" class="nav-link">Informes de la pagina</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a href="" class="nav-link">Reglas para usuario</a>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+        <!-- Contenido -->
+
+        <div class="container">
+
+            <div class="row m-5">
+
+                <div class="col-md-12" style="border: 1px solid #000;">
+
+                    <h2 class="">Publicaciones de empleos disponibles</h2>
+
+                </div>
+
+                <div class="col-md-12" style="border:1px solid #000">
+                
+                    <div class="col-md-8">
+
+                        <div class="col-md-4">
+
+                            <div class="headerpub d-flex">
+
+                                <img src="" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
+                                <div class="nombreCompay">
+
+                                    <h3>NombreEmpresa</h3>
+                                    <p>Tiempo del post</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="requerimientos">
+
+                                <h3>Requerimientos</h3>
+                                <p>//Informacion dada para la empresa//</p>
+
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-md-4">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
