@@ -27,13 +27,13 @@ def intranet(request):
     
     return render(request,'admin_iterface.html',context)
 
-def user_homepage(request):
+def user_homepage(request,id):
 
-    userMD = Usuario.objects.all()
+    userMD = Usuario.objects.filter(id_usuario=id)
 
     context = {
 
-        'user':userMD,
+        'users':userMD,
 
     }
 
@@ -62,7 +62,8 @@ def loginForm(request):
                 if user:
 
                     # return HttpResponse(user.nombresUs)
-                    return redirect('homepage_user')
+                    user_id = user.id_usuario
+                    return redirect('homepage_user', id=user_id)
                 
                 else:
 
@@ -105,7 +106,7 @@ def registerForm(request):
 
     if request.method == 'POST':
 
-        form1 = RegisterFormUser(request.POST)
+        form1 = RegisterFormUser(request.POST, request.FILES)
 
         if form1.is_valid():
 
@@ -144,7 +145,7 @@ def registerEmpresarial(request):
 
     if request.method == 'POST':
 
-        form = RegisterFormEmp(request.POST)
+        form = RegisterFormEmp(request.POST, request.FILES)
 
         if form.is_valid():
 

@@ -132,7 +132,16 @@ USE_TZ = True
 
 STATIC_URL = "apps/app_kang/static/"
 
+# Rutas donde se encuentran los archivos estáticos
+STATICFILES_DIRS = [path.join(BASE_DIR, 'apps/app_kang/static/')]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Base URL para servir archivos de medios
+MEDIA_URL = '/media/'
+
+# Ruta donde se almacenarán los archivos de medios
+MEDIA_ROOT = path.join(BASE_DIR, 'apps/app_kang/static/img')

@@ -14,14 +14,14 @@
 
         <div class="container">
 
-            <div class="row"  style="margin: 0px 20px 0px 20px;">
+            <div class="row" style="margin: 0px 20px 0px 20px;">
 
                 <div class="col-md-6 col-sm-12 d-flex align-items-center">
-
-                    <a href="/"><i class='fas fa-bars'></i></a>
-                    <img src="" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px; margin:0 20px 0 20px;">
-                    <p>Usuario</p>
-    
+                    {% for user in users %}
+                        <a href="/"><i class='fas fa-bars'></i></a>
+                        <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
+                        <p>{{user.nombresUs}}</p>
+                    {% endfor %}
                 </div>
     
                 <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">

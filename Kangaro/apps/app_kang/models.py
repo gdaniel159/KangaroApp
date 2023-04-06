@@ -38,6 +38,7 @@ class Usuario(models.Model):
     sexoUs = models.CharField(max_length=1)
     userUs = models.CharField(max_length=100)
     passwordUs = models.CharField(max_length=50)
+    profileUser = models.ImageField(upload_to='profiles',default='profiles/profileHitler.jpeg',blank=True)
 
     def __str__(self):
 
@@ -69,7 +70,28 @@ class Empresa(models.Model):
     userEmp = models.CharField(max_length=100)
     passwordEmp = models.CharField(max_length=50)
     url_sitioEmp = models.URLField(max_length=200)
+    profileEmp = models.ImageField(upload_to='profiles',default='profiles/profileHitler.jpeg',blank=True)
 
     def __str__(self):
 
         return self.nombreEmp
+    
+class Trabajo(models.Model):
+
+    id_trabajo = models.BigAutoField(primary_key=True)
+    id_empresa = models.ForeignKey(Empresa,on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=500)
+    responsabilidades = models.CharField(max_length=100)
+    beneficios = models.CharField(max_length=100)
+    informacion_extra = models.CharField(max_length=100)
+
+    def __str__(self):
+
+        return self.titulo
+    
+class Solicitud(models.Model):
+
+    id_solicitud = models.BigAutoField(primary_key=True)
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    id_trabajo = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
