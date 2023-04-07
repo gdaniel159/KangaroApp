@@ -1,6 +1,6 @@
 from django.shortcuts import  render, redirect
 from .forms import LoginForm, RegisterFormUser, RegisterFormEmp
-from .models import Usuario, Empresa, Administrador
+from .models import Usuario, Empresa, Administrador, Post, PostDetalle
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
@@ -31,9 +31,14 @@ def user_homepage(request,id):
 
     userMD = Usuario.objects.filter(id_usuario=id)
 
+    pub_emp = Post.objects.all()
+    pub_detalle = PostDetalle.objects.all()
+
     context = {
 
         'users':userMD,
+        'pub_emp':pub_emp,
+        'pub_detalle':pub_detalle
 
     }
 

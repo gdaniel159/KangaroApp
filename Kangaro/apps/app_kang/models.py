@@ -75,23 +75,32 @@ class Empresa(models.Model):
     def __str__(self):
 
         return self.nombreEmp
-    
-class Trabajo(models.Model):
 
-    id_trabajo = models.BigAutoField(primary_key=True)
+class Post(models.Model):
+
+    id_post = models.BigAutoField(primary_key=True)
     id_empresa = models.ForeignKey(Empresa,on_delete=models.CASCADE)
-    titulo = models.CharField(max_length=100)
-    descripcion = models.CharField(max_length=500)
-    responsabilidades = models.CharField(max_length=100)
-    beneficios = models.CharField(max_length=100)
-    informacion_extra = models.CharField(max_length=100)
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    requerimientos = models.CharField(max_length=500)
+
+    def __str__(self):
+        return f"Post {self.id_post} - Empresa {self.id_empresa} - Creado el {self.fecha_creacion}"
+
+class PostDetalle(models.Model):
+
+    id_post_detalle = models.AutoField(primary_key=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=255)
+    descripcion = models.CharField(max_length=255)
 
     def __str__(self):
 
-        return self.titulo
+        return f"{self.post}"
+
     
 class Solicitud(models.Model):
 
     id_solicitud = models.BigAutoField(primary_key=True)
     id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
-    id_trabajo = models.ForeignKey(Trabajo,on_delete=models.CASCADE)
+    id_post = models.ForeignKey(Post,on_delete=models.CASCADE)

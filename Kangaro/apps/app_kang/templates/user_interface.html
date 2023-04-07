@@ -79,66 +79,63 @@
 
             <div class="row m-5">
 
-                <div class="col-md-12" style="border: 1px solid #000;">
+                {% for publicacion in pub_emp %}
 
-                    <h2 class="">Publicaciones de empleos disponibles</h2>
+                    <div class="col-md-12 mt-5" style="border: 1px solid #000;">
 
-                </div>
+                        <h2 class="">Publicaciones de empleos disponibles</h2>
 
-                <div class="col-md-12 d-flex" style="border:1px solid #000">
-                
-                    <div class="col-md-5 p-3">
+                    </div>
 
-                        <div class="headerpub d-flex" style="margin: 10px 0 10px 0;">
+                    <div class="col-md-12 d-flex" style="border:1px solid #000">
+                    
+                        <div class="col-md-5 p-3">
 
-                            <img src="" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
+                            <div class="headerpub d-flex" style="margin: 10px 0 10px 0;">
 
-                            <div class="nombreCompay" style="margin: 0 0 0 20px;">
+                                <img src="" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
 
-                                <h3>NombreEmpresa</h3>
-                                <p>Tiempo del post</p>
+                                <div class="nombreCompay" style="margin: 0 0 0 20px;">
+
+                                    <h3>{{publicacion.id_empresa}}</h3>
+                                    <p>{{publicacion.fecha_creacion}}</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="requerimientos p-3" style="border:1px solid #ccc">
+
+                                <h3>Requerimientos</h3>
+                                <p>{{publicacion.requerimientos}}</p>
+
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-md-7 p-3">
+
+                            <h3 class="text-center">Asunto del post</h3>
+
+                            <div class="container-post-company p-3" style="border:1px solid #000">
+
+                                {% for detalle in pub_detalle %}
+
+                                    {% if detalle.post.id_post == publicacion.id_post %}
+                                        <h4>{{detalle.titulo}}</h4>
+                                        <p>{{detalle.descripcion}}</p>
+                                    {% endif %}
+
+                                {% endfor %}
+
+                                <a href="" class="btn btn-success">Leer post completo</a>
 
                             </div>
 
                         </div>
 
-                        <div class="requerimientos" style="border:1px solid #ccc">
-
-                            <h3>Requerimientos</h3>
-                            <p>//Informacion dada para la empresa//</p>
-
-                        </div>
-
                     </div>
-                    
-                    <div class="col-md-7 p-3">
-
-                        <h3 class="text-center">Asunto del post</h3>
-
-                        <div class="container-post-company p-3" style="border:1px solid #000">
-
-                            <h4>¿Por que trabajar con (NombreEmpresa)?</h4>
-                            <p>Informacion dada por la empresa</p>
-
-                            <h4>¿De que trata el trabajo?</h4>
-                            <p>Informacion dada por la empresa</p>
-
-                            <h4>¿Responsabilidades del trabajo?</h4>
-                            <p>Informacion dada por la empresa</p>
-
-                            <h4>Beneficios</h4>
-                            <p>Informacion dada por la empresa</p>
-
-                            <h4>Informacion Extra</h4>
-                            <p>Informacion dada por la empresa</p>
-
-                            <a href="" class="btn btn-success">Leer post completo</a>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                {% endfor %}
 
             </div>
 
