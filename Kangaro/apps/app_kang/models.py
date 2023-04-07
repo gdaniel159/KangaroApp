@@ -79,12 +79,12 @@ class Empresa(models.Model):
 class Post(models.Model):
 
     id_post = models.BigAutoField(primary_key=True)
-    id_empresa = models.ForeignKey(Empresa,on_delete=models.CASCADE)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     requerimientos = models.CharField(max_length=500)
 
     def __str__(self):
-        return f"Post {self.id_post} - Empresa {self.id_empresa} - Creado el {self.fecha_creacion}"
+        return f"Post {self.id_post} - Creado el {self.fecha_creacion}"
+
 
 class PostDetalle(models.Model):
 

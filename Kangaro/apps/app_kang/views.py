@@ -38,7 +38,7 @@ def user_homepage(request,id):
 
         'users':userMD,
         'pub_emp':pub_emp,
-        'pub_detalle':pub_detalle
+        'pub_detalle':pub_detalle,
 
     }
 
