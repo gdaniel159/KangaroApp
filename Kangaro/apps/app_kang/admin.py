@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario,Administrador,Empresa,Status,CategoriaProfesional, TipoEmpresa,Post,PostDetalle,Solicitud
+from .models import Usuario,Administrador,Empresa,Status,CategoriaProfesional, TipoEmpresa,Post,PostDetalle,Solicitud,Curriculum,Idioma,Habilidad,Formacion,Conocimiento,CurriculumConocimiento,CurriculumFormacionAcademica,CurriculumHabilidades,CurriculumIdiomas
 
 admin.site.register(Usuario)
 admin.site.register(Administrador)
@@ -10,5 +10,12 @@ admin.site.register(TipoEmpresa)
 admin.site.register(Post)
 admin.site.register(PostDetalle)
 admin.site.register(Solicitud)
-
-
+admin.site.register(Curriculum)
+admin.site.register(Idioma)
+admin.site.register(Habilidad)
+admin.site.register(Formacion)
+admin.site.register(Conocimiento)
+admin.site.register(CurriculumConocimiento)
+admin.site.register(CurriculumFormacionAcademica)
+admin.site.register(CurriculumHabilidades)
+admin.site.register(CurriculumIdiomas)

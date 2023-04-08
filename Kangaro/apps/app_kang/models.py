@@ -1,5 +1,7 @@
 from django.db import models
 
+# Modelos para darle sentido a nuestro usuarios
+
 class Status(models.Model):
 
     id_estatus = models.BigAutoField(primary_key=True)
@@ -26,7 +28,9 @@ class TipoEmpresa(models.Model):
     def __str__(self):
 
         return self.nombreTipEmp
-    
+
+# Usuarios Models
+
 class Usuario(models.Model):
     
     id_usuario = models.BigAutoField(primary_key=True)
@@ -76,6 +80,8 @@ class Empresa(models.Model):
 
         return self.nombreEmp
 
+# Post Models
+
 class Post(models.Model):
 
     id_post = models.BigAutoField(primary_key=True)
@@ -104,3 +110,90 @@ class Solicitud(models.Model):
     id_solicitud = models.BigAutoField(primary_key=True)
     id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
     id_post = models.ForeignKey(Post,on_delete=models.CASCADE)
+
+# Curriculum Models
+
+class Curriculum(models.Model):
+
+    id_curriculum = models.BigAutoField(primary_key=True)
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f"{self.id_usuario}"
+
+class Habilidad(models.Model):
+
+    id_habilidad = models.BigAutoField(primary_key=True)
+    nombre = models.CharField(max_length=255)
+
+    def __str__(self):
+
+        return f"{self.nombre}"
+
+class Idioma(models.Model):
+
+    id_idioma = models.BigAutoField(primary_key=True)
+    nombre = models.CharField(max_length=255)
+
+    def __str__(self):
+
+        return f"{self.nombre}"
+
+class Formacion(models.Model):
+
+    id_formacion = models.BigAutoField(primary_key=True)
+    nombre_institucion = models.CharField(max_length=255)
+    grado_titulo = models.CharField(max_length=255)
+    carrera = models.CharField(max_length=255)
+    inicio = models.DateField()
+    fin = models.DateField()
+
+    def __str__(self):
+
+        return f"{self.carrera}"
+
+class Conocimiento(models.Model):
+
+    id_conocimiento = models.BigAutoField(primary_key=True)
+    nombre = models.CharField(max_length=255)
+
+    def __str__(self):
+
+        return f"{self.nombre}"
+
+class CurriculumHabilidades(models.Model):
+
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    habilidad = models.ForeignKey(Habilidad, on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f"{self.habilidad}"
+
+class CurriculumIdiomas(models.Model):
+
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    idioma = models.ForeignKey(Idioma, on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f"{self.idioma}"
+
+class CurriculumFormacionAcademica(models.Model):
+
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    formacion = models.ForeignKey(Formacion, on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f"{self.formacion}"
+
+class CurriculumConocimiento(models.Model):
+
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    conocimiento = models.ForeignKey(Conocimiento, on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f"{self.conocimiento}"
