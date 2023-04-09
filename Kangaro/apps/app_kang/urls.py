@@ -19,6 +19,8 @@ urlpatterns = [
     path('editar_empresa/<int:id>',views.editar_empresa, name='editar_empresa'),
     
     path('actualizar_datos/<int:id>',views.actualizar_datos, name='actualizar_datos'),
-    path('actualizar_datos_empresa/<int:id>',views.actualizar_datos_emp, name='actualizar_datos_empresa')
+    path('actualizar_datos_empresa/<int:id>',views.actualizar_datos_emp, name='actualizar_datos_empresa'),
+
+    path('curriculum/<int:id>',views.curriculum, name='curriculum')
 
 ]

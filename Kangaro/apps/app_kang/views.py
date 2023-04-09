@@ -1,6 +1,6 @@
 from django.shortcuts import  render, redirect
 from .forms import LoginForm, RegisterFormUser, RegisterFormEmp
-from .models import Usuario, Empresa, Administrador, Post, PostDetalle
+from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
@@ -43,6 +43,24 @@ def user_homepage(request,id):
     }
 
     return render(request,'user_interface.html',context)
+
+def curriculum(request,id):
+
+    user = Usuario.objects.filter(id_usuario=id)
+    curriculum = Curriculum.objects.filter(id_usuario=id)
+    formacion = FormacionAcademica.objects.filter(id_usuario=id)
+    experiencia = ExperienciaLaboral.objects.filter(id_usuario=id)
+
+    context = {
+
+        'currl':curriculum,
+        'users':user,
+        'formaciones':formacion,
+        'experiencias':experiencia
+
+    }
+
+    return render(request,'curriculum_model.html',context)
 
 def loginForm(request):
 

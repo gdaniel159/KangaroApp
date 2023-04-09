@@ -40,6 +40,8 @@ class Usuario(models.Model):
     correoUs = models.EmailField(max_length=254)
     dniUs = models.CharField(max_length=8)
     sexoUs = models.CharField(max_length=1)
+    telefono = models.CharField(max_length=9)
+    direccion = models.CharField(max_length=255)
     userUs = models.CharField(max_length=100)
     passwordUs = models.CharField(max_length=50)
     profileUser = models.ImageField(upload_to='profiles',default='profiles/profileHitler.jpeg',blank=True)
@@ -113,39 +115,13 @@ class Solicitud(models.Model):
 
 # Curriculum Models
 
-class Curriculum(models.Model):
-
-    id_curriculum = models.BigAutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
-
-    def __str__(self):
-
-        return f"{self.id_usuario}"
-
-class Habilidad(models.Model):
-
-    id_habilidad = models.BigAutoField(primary_key=True)
-    nombre = models.CharField(max_length=255)
-
-    def __str__(self):
-
-        return f"{self.nombre}"
-
-class Idioma(models.Model):
-
-    id_idioma = models.BigAutoField(primary_key=True)
-    nombre = models.CharField(max_length=255)
-
-    def __str__(self):
-
-        return f"{self.nombre}"
-
-class Formacion(models.Model):
+class FormacionAcademica(models.Model):
 
     id_formacion = models.BigAutoField(primary_key=True)
-    nombre_institucion = models.CharField(max_length=255)
-    grado_titulo = models.CharField(max_length=255)
-    carrera = models.CharField(max_length=255)
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    nombreInstitucion = models.CharField(max_length=200)
+    grado_titulo = models.CharField(max_length=200)
+    carrera = models.CharField(max_length=200)
     inicio = models.DateField()
     fin = models.DateField()
 
@@ -153,47 +129,29 @@ class Formacion(models.Model):
 
         return f"{self.carrera}"
 
-class Conocimiento(models.Model):
+class ExperienciaLaboral(models.Model):
 
-    id_conocimiento = models.BigAutoField(primary_key=True)
-    nombre = models.CharField(max_length=255)
-
-    def __str__(self):
-
-        return f"{self.nombre}"
-
-class CurriculumHabilidades(models.Model):
-
-    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
-    habilidad = models.ForeignKey(Habilidad, on_delete=models.CASCADE)
+    id_experiencia = models.BigAutoField(primary_key=True)
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    nombre_empresa = models.CharField(max_length=200)
+    cargo_ocupado = models.CharField(max_length=200)
+    tarea_realizadas = models.CharField(max_length=200)
+    inicio = models.DateField()
+    fin = models.DateField()
 
     def __str__(self):
 
-        return f"{self.habilidad}"
+        return f"{self.nombre_empresa}"
 
-class CurriculumIdiomas(models.Model):
+class Curriculum(models.Model):
 
-    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
-    idioma = models.ForeignKey(Idioma, on_delete=models.CASCADE)
-
-    def __str__(self):
-
-        return f"{self.idioma}"
-
-class CurriculumFormacionAcademica(models.Model):
-
-    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
-    formacion = models.ForeignKey(Formacion, on_delete=models.CASCADE)
+    id_curriculum = models.BigAutoField(primary_key=True)
+    id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    perfil_profesional = models.CharField(max_length=500)
+    idiomas = models.CharField(max_length=200)
+    conocimientos = models.CharField(max_length=200)
+    habilidades = models.CharField(max_length=200)
 
     def __str__(self):
 
-        return f"{self.formacion}"
-
-class CurriculumConocimiento(models.Model):
-
-    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
-    conocimiento = models.ForeignKey(Conocimiento, on_delete=models.CASCADE)
-
-    def __str__(self):
-
-        return f"{self.conocimiento}"
+        return f"{self.id_usuario}"
