@@ -27,6 +27,10 @@ urlpatterns = [
 
     path('curriculum/<int:id>',views.curriculum, name='curriculum'),
 
+    path('crear_curriculum/', views.crear_curriculum, name="crear_curriculum"),
+    path('formacion_academica/',views.formacion_academica, name="formacion"),
+    path('experiencia_laboral/',views.experiencia_laboral, name="experiencia"),
+
     path('inspeccionar/<int:id>',views.inspeccionar,name="inspeccion"),
     path('enviar_solicitud/<int:id_usuario>/<int:id_post>',views.solicitud,name="solicitud")
 

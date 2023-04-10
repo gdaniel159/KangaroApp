@@ -1,0 +1,48 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Crear Curriculum {%endblock%}
+{% block styles %}
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row m-4">
+
+        <div class="container p-3" style="border: 1px solid #000;">
+
+            <h2 class="text-center" style="text-decoration: underline;">Creacion del Curriculum</h2>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="col-md-6 m-auto" style="line-height: 75px;">
+        
+                        <form action="" method="post">
+        
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <input type="submit" value="Enviar" class="btn btn-primary form-control">
+                            <div class="btn-group text-center w-100 p-3">
+                                <a href="{% url 'formacion' %}" class="btn btn-warning w-50" style="margin-right: 10px;">Añadir Formacion academica</a>
+                                <a href="{% url 'experiencia' %}" class="btn btn-warning w-50">Añadir Experiencia Laboral</a>
+                            </div>
+                            
+                
+                        </form>
+        
+                    </div>
+        
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

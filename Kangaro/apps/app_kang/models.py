@@ -44,7 +44,7 @@ class Usuario(models.Model):
     direccion = models.CharField(max_length=255)
     userUs = models.CharField(max_length=100)
     passwordUs = models.CharField(max_length=50)
-    profileUser = models.ImageField(upload_to='profiles',default='profiles/profileHitler.jpeg',blank=True)
+    profileUser = models.ImageField(upload_to='profiles',default='profiles/defaultProfile.jpg',blank=True)
 
     def __str__(self):
 
@@ -76,7 +76,7 @@ class Empresa(models.Model):
     userEmp = models.CharField(max_length=100)
     passwordEmp = models.CharField(max_length=50)
     url_sitioEmp = models.URLField(max_length=200)
-    profileEmp = models.ImageField(upload_to='profiles',default='profiles/profileHitler.jpeg',blank=True)
+    profileEmp = models.ImageField(upload_to='profiles',default='profiles/defaultProfile.jpg',blank=True)
 
     def __str__(self):
 

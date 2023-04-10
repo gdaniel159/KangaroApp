@@ -1,5 +1,5 @@
 from django.shortcuts import  render, redirect
-from .forms import LoginForm, RegisterFormUser, RegisterFormEmp
+from .forms import LoginForm, RegisterFormUser, RegisterFormEmp, CurriculumForm,FormacionAcademicaForm, ExperienciaLaboralForm
 from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud
 from django.http import HttpResponse
 from django.contrib import messages
@@ -113,6 +113,58 @@ def curriculum(request,id):
     }
 
     return render(request,'curriculum_model.html',context)
+
+def crear_curriculum(request):
+
+
+    form = CurriculumForm()
+
+    if request.method == 'POST':
+
+        form = CurriculumForm(request.POST)
+
+        if form.is_valid():
+
+            data = form.save(commit=True)
+            data.save()
+
+            return redirect('crear_curriculum')
+        else:
+
+            return HttpResponse("Registro Invalido")  
+
+
+    context = {
+
+        'form':form
+
+    }
+
+    return render(request,'crear_cv.html',context)
+
+def formacion_academica(request):
+
+    form = FormacionAcademicaForm()
+
+    context = {
+
+        'form':form
+
+    }
+
+    return render(request,'formacion_academica.html',context)
+
+def experiencia_laboral(request):
+
+    form = ExperienciaLaboralForm()
+
+    context = {
+
+        'form':form
+
+    }
+
+    return render(request,'experiencia_laboral.html',context)
 
 def loginForm(request):
 

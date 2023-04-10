@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'apps.app_kang',
+    
     
 ]
 
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
 ]
 
@@ -145,3 +148,9 @@ MEDIA_URL = '/media/'
 
 # Ruta donde se almacenarán los archivos de medios
 MEDIA_ROOT = path.join(BASE_DIR, 'apps/app_kang/static/img')
+
+INTERNAL_IPS = [
+
+    "127.0.0.1",
+    
+]

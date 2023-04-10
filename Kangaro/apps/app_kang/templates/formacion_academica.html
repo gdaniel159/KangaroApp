@@ -1,0 +1,44 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Kangaro Company {%endblock%}
+{% block styles %}
+    <link rel="stylesheet" href="{% static '' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row m-4">
+
+        <div class="container p-3" style="border: 1px solid #000;">
+
+            <h2 class="text-center" style="text-decoration: underline;">Formacion Academica</h2>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="col-md-6 m-auto" style="line-height: 60px;">
+        
+                        <form action="" method="post">
+        
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <input type="submit" value="Enviar" class="btn btn-primary form-control">
+                            <a href="{% url 'crear_curriculum' %}" class="btn btn-warning form-control">Regresar</a>
+                
+                        </form>
+        
+                    </div>
+        
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
