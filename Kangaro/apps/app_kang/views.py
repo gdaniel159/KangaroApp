@@ -1,6 +1,6 @@
 from django.shortcuts import  render, redirect
 from .forms import LoginForm, RegisterFormUser, RegisterFormEmp
-from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral
+from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
@@ -30,19 +30,65 @@ def intranet(request):
 def user_homepage(request,id):
 
     userMD = Usuario.objects.filter(id_usuario=id)
-
     pub_emp = Post.objects.all()
     pub_detalle = PostDetalle.objects.all()
+
+    for post in pub_emp:
+        post.empresa.image_url = post.empresa.profileEmp.url
 
     context = {
 
         'users':userMD,
         'pub_emp':pub_emp,
-        'pub_detalle':pub_detalle,
+        'pub_detalle':pub_detalle
 
     }
 
+    success_messages = messages.get_messages(request)
+    success_messages_used = list(success_messages)
+    context['success_messages'] = success_messages_used
+
     return render(request,'user_interface.html',context)
+
+def emp_homepage(request,id):
+
+    empMD = Empresa.objects.filter(id_empresa=id)
+    pub_emp = Post.objects.filter(empresa=id)
+    post = Post.objects.get(id_post=id)
+    pub_detalle = PostDetalle.objects.filter(post__empresa__id_empresa=id)
+
+    for post in pub_emp:
+        post.empresa.image_url = post.empresa.profileEmp.url
+
+    context = {
+
+        'emps':empMD,
+        'pub_emp':pub_emp,
+        'pub_detalle':pub_detalle
+
+    }
+
+    return render(request,'empresa_interface.html',context)
+
+def inspeccionar(request,id):
+
+    post = Post.objects.get(id_post=id)
+
+    solicitudes = Solicitud.objects.filter(id_post=post)
+
+    usuarios = Usuario.objects.filter(solicitud__in=solicitudes).distinct()
+
+    formacion = FormacionAcademica.objects.filter(id_usuario__in=usuarios)
+
+    context = {
+
+        'solicitudes': solicitudes,
+        'usuarios': usuarios,
+        'formacion': formacion
+
+    }
+
+    return render(request, 'inspeccionar.html', context)
 
 def curriculum(request,id):
 
@@ -111,7 +157,8 @@ def loginForm(request):
 
                 if emp:
 
-                    return HttpResponse(emp.nombreEmp)
+                    emp_id = emp.id_empresa
+                    return redirect('homepage_emp',emp_id)
 
                 else:
 
@@ -245,3 +292,21 @@ def actualizar_datos_emp(request,id):
         objeto.save()
 
         return redirect('intranet')
+    
+def solicitud(request,id_usuario,id_post):
+
+    id_usuario = id_usuario
+    id_post = id_post
+
+    user = Usuario.objects.get(id_usuario=id_usuario)
+    post = Post.objects.get(id_post=id_post)
+
+    solicitud = Solicitud(id_usuario=user, id_post=post)
+
+    solicitud.save()
+
+    url = reverse('homepage_user', args=[user.id_usuario])
+
+    messages.success(request, '¡Se envió el "Me Interesa" correctamente!')
+
+    return redirect(url)

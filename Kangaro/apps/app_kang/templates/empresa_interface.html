@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %} Kangaro Company {%endblock%}
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/user.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'css/user.css' %}"> -->
 {% endblock %}
 {% block content %}
 
@@ -11,51 +11,40 @@
     <div class="row">
 
         <!-- Header -->
-
         <div class="container">
 
-            <div class="row" style="margin: 0px 20px 0px 20px;">
+            <div class="row">
 
-                <div class="col-md-6 col-sm-12 d-flex align-items-center">
-                    {% for user in users %}
-                        <a href="#"><i class='fas fa-bars' id="menu-icon"></i></a>
-                        <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
-                        <p>{{user.nombresUs}}</p>
-                    {% endfor %}
-                </div>
-    
-                <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">
-    
-                    <div class="right-content">
-    
+                {% for emp in emps %}
+                
+                    <div class="col-md-12 text-center mt-4">
+
+                        <img src="{{emp.profileEmp.url}}" style="width:150px; height:150px;">
+                        <p style="font-size: 20px;">{{emp.nombreEmp}}</p>
+
+                    </div>
+
+                    <div class="container-contenido d-flex justify-content-between align-items-center">
+
+                        <div class="context-left text-center" style="margin-left: 50px; font-size: 20px;">
+
+                            <i class='far fa-paper-plane'></i> {{emp.correoEmp}}
+
+                        </div>
+
                         <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
     
                             <h2>KANGARO CORP</h2>
                             <p>Conectate con el mundo</p>
-    
+
                         </div>
-    
+
                     </div>
-    
-                </div>
+
+                {% endfor %}
 
             </div>
 
-        </div>
-
-        <div class="dropdown-menu" id="menu-dropdown" style="position: fixed; top: 0; left: 0; width: 250px; background-color: white; padding: 20px; height: 100vh;">
-            {% for user in users %}
-                <h4>{{user.nombresUs}}</h4>
-            {% endfor %}
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Ver Perfil</a>
-            {% for user in users %}
-                <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Visualizar CV</a>
-            {% endfor %}
-            <a class="dropdown-item" href="../login">Cerrar sesion</a>
-            <div class="dropdown-divider"></div>
-            <!-- Enlace de Cerrar -->
-            <a class="dropdown-item" href="#" id="close-menu">Cerrar</a>
         </div>
 
         <!-- Navbar -->
@@ -70,13 +59,19 @@
 
                         <li class="nav-item">
 
-                            <a href="" class="nav-link">Informes de la pagina</a>
+                            <a href="" class="nav-link">Editar Cuenta</a>
 
                         </li>
 
                         <li class="nav-item">
 
-                            <a href="" class="nav-link">Reglas para usuario</a>
+                            <a href="" class="nav-link">Reazilar Post</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a href="../login" class="nav-link">Cerrar Sesion</a>
 
                         </li>
 
@@ -87,20 +82,20 @@
             </div>
 
         </div>
-
+        
         <!-- Contenido -->
 
         <div class="container">
 
             <div class="row m-5">
 
+                <div class="col-md-12 mt-5 mb-2" style="border: 1px solid #000;">
+
+                    <h2 class="">Publicaciones realizadas</h2>
+
+                </div>
+
                 {% for publicacion in pub_emp %}
-
-                    <div class="col-md-12 mb-2" style="border: 1px solid #000;">
-
-                        <h2 class="">Publicaciones realizadas</h2>
-
-                    </div>
 
                     <div class="col-md-12 d-flex mb-4" style="border:1px solid #000">
 
@@ -124,29 +119,13 @@
 
                             </div>
                             
-                            <div class="btn-section mt-2">
+                            <div class="btn-section d-flex justify-content-between mt-2">
 
-                                <div class="btn-interes">
+                                {% for emp in emps %}
+                                
+                                    <a href="../inspeccionar/{{publicacion.id_post}}" class="btn btn-danger form-control">Inspeccionar</a>
 
-                                    {% for user in users %}
-                                        <a href="{% url 'solicitud' id_usuario=user.id_usuario id_post=publicacion.id_post %}" class="btn btn-success form-control" id="btn">Me interesa</a>
-                                    {% endfor %}
-
-                                </div>
-
-                                <div class="message-content">
-
-                                    {% if success_messages %}
-
-                                        {% for message in success_messages %}
-
-                                            <p>{{ message }}</p>
-
-                                        {% endfor %}
-
-                                    {% endif %}
-
-                                </div>
+                                {% endfor %}
 
                             </div>
 
@@ -232,5 +211,7 @@
     </div>
 
 </div>
-<script type="text/javascript" src="{% static 'js/user.js' %}"></script>
+
+</div>
+
 {% endblock content %}

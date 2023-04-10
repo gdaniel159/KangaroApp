@@ -29,7 +29,7 @@ class RegisterFormUser(forms.ModelForm):
     class Meta:
 
         model = Usuario
-        fields = ('id_estatusUs','id_categoria_profesional','nombresUs','correoUs','dniUs','sexoUs','userUs','passwordUs','profileUser')
+        fields = ('id_estatusUs','id_categoria_profesional','nombresUs','correoUs','dniUs','sexoUs','telefono','direccion','userUs','passwordUs','profileUser')
 
 class RegisterFormEmp(forms.ModelForm):
 

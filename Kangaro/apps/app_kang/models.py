@@ -87,18 +87,18 @@ class Empresa(models.Model):
 class Post(models.Model):
 
     id_post = models.BigAutoField(primary_key=True)
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     requerimientos = models.CharField(max_length=500)
 
     def __str__(self):
-        return f"Post {self.id_post} - Creado el {self.fecha_creacion}"
+        return f"Post {self.empresa} - Creado el {self.fecha_creacion}"
 
 
 class PostDetalle(models.Model):
 
     id_post_detalle = models.AutoField(primary_key=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     titulo = models.CharField(max_length=255)
     descripcion = models.CharField(max_length=255)
 
@@ -112,6 +112,10 @@ class Solicitud(models.Model):
     id_solicitud = models.BigAutoField(primary_key=True)
     id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
     id_post = models.ForeignKey(Post,on_delete=models.CASCADE)
+
+    def __str__(self):
+
+        return f"{self.id_usuario} - {self.id_post}"
 
 # Curriculum Models
 

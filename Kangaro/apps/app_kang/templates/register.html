@@ -10,15 +10,15 @@
 
     <div class="row w-100 p-4">
 
-        <h2 style="text-decoration: underline; margin-bottom: 20px;">Registro de una cuenta</h2>
+        <h2 style="text-decoration: underline; margin-bottom: 20px; margin-top: 50px;">Registro de una cuenta</h2>
 
         <div class="col-md-6 m-auto">
 
             <form action="" method="post" enctype="multipart/form-data">
         
                 {% csrf_token %}
-                {{form1.as_p}}
-                <input type="submit" value="Enviar" class="btn btn-primary form-control">
+                {{form1.as_table}}
+                <input type="submit" value="Enviar" class="btn btn-primary form-control mt-2">
                 <a href="/" class="btn btn-danger mt-2 form-control" style="font-weight: bold; color: #fff;">Regresar a la pagina principal</a>
             
             </form>
