@@ -14,35 +14,43 @@
 
             <div class="row m-4">
 
-                {% for solicitud in solicitudes %}
+                {% if solicitudes %}
 
-                    <div class="col-md-12 p-3 d-flex align-content-center mb-3" style="border: 1px solid #000;">
+                    {% for solicitud in solicitudes %}
 
-                        <div class="col-md-5 p-3 text-center">
+                        <div class="col-md-12 p-3 d-flex align-content-center mb-3" style="border: 1px solid #000;">
 
-                            <img src="{{solicitud.id_usuario.profileUser.url}}" alt="" class="img-fluid" width="100" height="100">
+                            <div class="col-md-5 p-3 text-center">
 
-                            <p>{{solicitud.id_usuario.nombresUs}}</p>
+                                <img src="{{solicitud.id_usuario.profileUser.url}}" alt="" class="img-fluid" width="100" height="100">
 
-                            <p>{{solicitud.id_usuario.direccion}}</p>
+                                <p>{{solicitud.id_usuario.nombresUs}}</p>
+
+                                <p>{{solicitud.id_usuario.direccion}}</p>
 
 
+                            </div>
+
+                            <div class="col-md-7 p-3">
+
+                                <h2>Carrera: {{ solicitud.id_usuario.formacionacademica_set.first.carrera }}</h2>
+
+                                <p>Correo: {{solicitud.id_usuario.correoUs}}</p>
+                                
+                                <p>Telefono: {{solicitud.id_usuario.telefono}}</p>
+
+                                <a href="" class="btn btn-primary" style="border: 1px solid #000;">Ver perfil</a>
+
+                            </div>
                         </div>
 
-                        <div class="col-md-7 p-3">
+                    {% endfor %}
 
-                            <h2>Carrera: {{ solicitud.id_usuario.formacionacademica_set.first.carrera }}</h2>
+                {% else %}
 
-                            <p>Correo: {{solicitud.id_usuario.correoUs}}</p>
-                            
-                            <p>Telefono: {{solicitud.id_usuario.telefono}}</p>
+                    <p>No hay usuarios interesados</p>
 
-                            <a href="" class="btn btn-primary" style="border: 1px solid #000;">Ver perfil</a>
-
-                        </div>
-                    </div>
-
-                {% endfor %}
+                {% endif %}
 
             </div>
 

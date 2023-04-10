@@ -11,6 +11,10 @@ def index(request):
 
     return render(request,'index.html')
 
+def ayuda(request):
+
+    return render(request,'Ayuda.html')
+
 def intranet(request):
 
     userMD = Usuario.objects.all()
@@ -87,6 +91,8 @@ def inspeccionar(request,id):
         'formacion': formacion
 
     }
+
+    messages.success(request, '¡No hay datos dentro que mostrar!')
 
     return render(request, 'inspeccionar.html', context)
 
