@@ -26,10 +26,10 @@ urlpatterns = [
     path('actualizar_datos_empresa/<int:id>',views.actualizar_datos_emp, name='actualizar_datos_empresa'),
 
     path('curriculum/<int:id>',views.curriculum, name='curriculum'),
+    path('crear_curriculum/<str:nombre>', views.crear_curriculum, name="crear_curriculum"),
 
-    path('crear_curriculum/', views.crear_curriculum, name="crear_curriculum"),
-    path('formacion_academica/',views.formacion_academica, name="formacion"),
-    path('experiencia_laboral/',views.experiencia_laboral, name="experiencia"),
+    path('formacion_academica/<str:nombre>',views.formacion_academica, name="formacion"),
+    path('experiencia_laboral/<str:nombre>',views.experiencia_laboral, name="experiencia"),
 
     path('inspeccionar/<int:id>',views.inspeccionar,name="inspeccion"),
     path('enviar_solicitud/<int:id_usuario>/<int:id_post>',views.solicitud,name="solicitud")

@@ -59,7 +59,7 @@ class CurriculumForm(forms.ModelForm):
     class Meta:
     
         model = Curriculum
-        fields = '__all__'
+        fields = ('perfil_profesional','idiomas','conocimientos','habilidades')
 
 class ExperienciaLaboralForm(forms.ModelForm):
 

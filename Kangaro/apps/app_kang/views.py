@@ -7,6 +7,8 @@ from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render, get_object_or_404
 
+# Paginas estaticas con contenido predefinido
+
 def index(request):
 
     return render(request,'index.html')
@@ -14,6 +16,8 @@ def index(request):
 def ayuda(request):
 
     return render(request,'Ayuda.html')
+
+# Intranet del administador
 
 def intranet(request):
 
@@ -30,6 +34,8 @@ def intranet(request):
     }
     
     return render(request,'admin_iterface.html',context)
+
+# Home Page del usuario
 
 def user_homepage(request,id):
 
@@ -54,6 +60,8 @@ def user_homepage(request,id):
 
     return render(request,'user_interface.html',context)
 
+# Home page de la empresa
+
 def emp_homepage(request,id):
 
     empMD = Empresa.objects.filter(id_empresa=id)
@@ -73,6 +81,8 @@ def emp_homepage(request,id):
     }
 
     return render(request,'empresa_interface.html',context)
+
+# Vista para inspeccionar las solicitudes de interes de los usuario
 
 def inspeccionar(request,id):
 
@@ -96,6 +106,8 @@ def inspeccionar(request,id):
 
     return render(request, 'inspeccionar.html', context)
 
+# Creacion del curriculum
+
 def curriculum(request,id):
 
     user = Usuario.objects.filter(id_usuario=id)
@@ -114,10 +126,13 @@ def curriculum(request,id):
 
     return render(request,'curriculum_model.html',context)
 
-def crear_curriculum(request):
+# Formulario para la creacion de un curriculum
+
+def crear_curriculum(request,nombre):
 
 
     form = CurriculumForm()
+    user = Usuario.objects.get(nombresUs=nombre)
 
     if request.method == 'POST':
 
@@ -136,35 +151,46 @@ def crear_curriculum(request):
 
     context = {
 
-        'form':form
+        'form':form,
+        'users':user
 
     }
 
     return render(request,'crear_cv.html',context)
 
-def formacion_academica(request):
+# Añadir informacion academica al CV
+
+def formacion_academica(request,nombre):
 
     form = FormacionAcademicaForm()
+    user = Usuario.objects.get(nombresUs=nombre)
 
     context = {
 
-        'form':form
+        'form':form,
+        'users':user
 
     }
 
     return render(request,'formacion_academica.html',context)
 
-def experiencia_laboral(request):
+# Añadir experiencia laboral al CV
+
+def experiencia_laboral(request,nombre):
 
     form = ExperienciaLaboralForm()
+    user = Usuario.objects.get(nombresUs=nombre)
 
     context = {
 
-        'form':form
+        'form':form,
+        'users':user
 
     }
 
     return render(request,'experiencia_laboral.html',context)
+
+# Formulario para el Login de usuarios (Administrativos - Usuarios - Empresas)
 
 def loginForm(request):
 
@@ -228,6 +254,8 @@ def loginForm(request):
     
     return render(request, 'login.html', {'form': form})
 
+# Registro de Usuarios comunes
+
 def registerForm(request):
 
     form1 = RegisterFormUser()
@@ -255,6 +283,8 @@ def registerForm(request):
 
     return render(request,'register.html',context)
 
+# Consultas delete para los usuario en el intranet
+
 def delete_user(request,id):
 
     userDelete = Usuario.objects.get(id_usuario=id)
@@ -266,6 +296,8 @@ def delete_emp(request,id):
     userEmp = Empresa.objects.get(id_empresa=id)
     userEmp.delete()
     return redirect('intranet')
+
+# Register para los usuarios empresariales
 
 def registerEmpresarial(request):
 
@@ -297,6 +329,8 @@ def registerEmpresarial(request):
 
     return render(request,'crear_empresarial.html',context)
 
+# Seleccion de los usuarios empresariales y usuarios normales para su actualizacion de datos
+
 def editar_usuario(request,id):
 
     user = Usuario.objects.get(id_usuario=id)
@@ -320,6 +354,8 @@ def editar_empresa(request,id):
     }
 
     return render(request,'editar_empresa.html',context)
+
+# Consultas update
 
 def actualizar_datos(request,id):
 
@@ -350,7 +386,9 @@ def actualizar_datos_emp(request,id):
         objeto.save()
 
         return redirect('intranet')
-    
+
+# Consulta para realizar la peticion de solicitud de un usuario
+
 def solicitud(request,id_usuario,id_post):
 
     id_usuario = id_usuario

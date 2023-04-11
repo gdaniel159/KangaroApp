@@ -24,10 +24,14 @@
         
                             {% csrf_token %}
                             {{form.as_p}}
+
                             <input type="submit" value="Enviar" class="btn btn-primary form-control">
+
                             <div class="btn-group text-center w-100 p-3">
-                                <a href="{% url 'formacion' %}" class="btn btn-warning w-50" style="margin-right: 10px;">Añadir Formacion academica</a>
-                                <a href="{% url 'experiencia' %}" class="btn btn-warning w-50">Añadir Experiencia Laboral</a>
+
+                                <a href="../formacion_academica/{{users}}" class="btn btn-warning w-50" style="margin-right: 10px;">Añadir Formacion academica</a>
+                                <a href="../experiencia_laboral/{{users}}" class="btn btn-warning w-50">Añadir Experiencia Laboral</a>
+
                             </div>
                             
                 

@@ -75,9 +75,11 @@
                         </li>
 
                         <li class="nav-item">
+                            {% for user in users %}
 
-                            <a href="../crear_curriculum" class="nav-link">Crear CV</a>
-
+                                <a href="../crear_curriculum/{{user.nombresUs}}" class="nav-link">Crear CV</a>
+                                
+                            {% endfor %}
                         </li>
 
                     </ul>

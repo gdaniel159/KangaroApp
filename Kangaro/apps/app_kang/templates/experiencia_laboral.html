@@ -25,7 +25,7 @@
                             {% csrf_token %}
                             {{form.as_p}}
                             <input type="submit" value="Enviar" class="btn btn-primary form-control">
-                            <a href="{% url 'crear_curriculum' %}" class="btn btn-warning form-control">Regresar</a>
+                            <a href="../crear_curriculum/{{users}}" class="btn btn-warning form-control">Regresar</a>
                 
                         </form>
         
