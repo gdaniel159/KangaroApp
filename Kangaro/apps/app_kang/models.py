@@ -92,7 +92,7 @@ class Post(models.Model):
     requerimientos = models.CharField(max_length=500)
 
     def __str__(self):
-        return f"Post {self.empresa} - Creado el {self.fecha_creacion}"
+        return f"Post: {self.empresa} Trabajo: {self.requerimientos}"
 
 
 class PostDetalle(models.Model):

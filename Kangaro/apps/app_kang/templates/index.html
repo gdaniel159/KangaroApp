@@ -94,7 +94,7 @@
 
                                 <li class="nav-item">
 
-                                    <a class="nav-link" href="Contactanos.html">Contactanos</a>
+                                    <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
 
                                 </li>
 
@@ -122,7 +122,7 @@
 
             <!-- Imagen representativa -->
 
-            <div class="row">
+            <div class="row mt-3">
 
                 <img src="{% static 'img/banner_1.png' %}" alt="'Carrusel'" class="img-fluid">
 
@@ -134,7 +134,7 @@
 
             <div class="row">
 
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae iure ratione nemo sequi magnam nobis facere blanditiis obcaecati! Atque labore ratione tempore, repellat, saepe omnis eum ipsa ab non ducimus inventore laboriosam recusandae consequatur! Et tempora sapiente id nulla consequatur excepturi officiis, delectus laboriosam doloremque doloribus veniam neque, accusamus cum.</p>
+                <p>Kangaro Company, permitimos que personas con carrera finalizada y conocimientos amplios en sus áreas puedan conseguir un buen puesto de empleo en alguna empresa que confiaron en nosotros. Aparte de ser de gran ayuda para conseguir empleos, tambien queremos ofrecerles a las empresas futuros empleados competentes y que ellas aspiran a tener.</p>
 
             </div>
 
@@ -150,14 +150,14 @@
 
                         <div class="col-md-4 col-sm-12">
 
-                            <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 100px;" class="d-block w-100">
+                            <img src="{% static 'img/sobre_nosotros.png' %}" alt="'Carrusel'" class="img-fluid">
     
                         </div>
     
                         <div class="col-md-8 col-sm-12">
     
                             <h3>Sobre nosotros</h3>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel dignissimos enim sit, aliquam placeat, pariatur officia optio, animi cum nostrum natus id eaque mollitia ipsum delectus voluptatibus aperiam. Fugit vero exercitationem laudantium nesciunt? Tempora, facere officiis. Aspernatur quos error animi voluptatum, ullam modi illum dolor repellat? Enim quos quia reprehenderit?</p>
+                            <p>KANGARO COMPANY es una empresa intermediaria entre empresas y futuros empleados, dedicada a ayudar a las personas en busca de trabajo a conseguir empleo en empresas reconocidas. Nos enfocamos en brindar soluciones efectivas para la búsqueda de empleo, ofreciendo recursos y herramientas para todos los usuarios, incluyendo aquellos sin experiencia laboral o sin un currículum creado. Nuestro equipo altamente capacitado está comprometido en ofrecer un servicio personalizado y amigable para ayudar a nuestros usuarios a encontrar el trabajo que mejor se adapte a sus habilidades y necesidades. Además, nos encargamos de la búsqueda y selección de candidatos ideales para las empresas que solicitan nuestros servicios, asegurando la satisfacción de ambas partes en el proceso. Nuestra misión es contribuir a la disminución de la tasa de desempleo en la región, y estamos comprometidos en mejorar la calidad de vida de las personas a través de nuestro servicio de búsqueda de empleo eficiente y confiable.</p>
     
                         </div>
 
@@ -173,7 +173,7 @@
 
             <div class="row">
 
-                <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 300px;" class="d-block w-100">
+                <img src="{% static 'img/Banner2.png' %}" alt="'Carrusel'" class="img-fluid">
 
             </div>
 
@@ -190,13 +190,14 @@
                         <div class="col-md-8 col-sm-12">
 
                             <h3>Historia</h3>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel dignissimos enim sit, aliquam placeat, pariatur officia optio, animi cum nostrum natus id eaque mollitia ipsum delectus voluptatibus aperiam. Fugit vero exercitationem laudantium nesciunt? Tempora, facere officiis. Aspernatur quos error animi voluptatum, ullam modi illum dolor repellat? Enim quos quia reprehenderit?</p>
+                            <p>KANGARO COMPANY se creó el 29 de abril de 2023 para ayudar a personas sin empleo a conseguir trabajo en empresas reconocidas. La idea surgió después de una breve discusión sobre las dificultades que se les presenta a muchas personas a la hora de buscar empleo, pasando por un largo tiempo de desempleo. 
+                            KANGARO COMPANY es una empresa comprometida a ayudar a las personas en busca de empleo, incluyendo aquellas sin experiencia laboral o sin un currículum creado. Ofreciendo recursos y herramientas para facilitarles la búsqueda de Trabajo en empresas reconocidas mediante una plataforma innovadora y un equipo dedicado en brindar soluciones efectivas para la búsqueda de empleo, La empresa también brinda servicio a las empresas en la búsqueda y selección de candidatos ideales, permitiéndoles visualizar su CV y conseguir potenciales trabajadores de manera eficiente. Esperando contribuir en la disminución de la tasa de desempleo en la región.</p>
     
                         </div>
     
                         <div class="col-md-4 col-sm-12">
     
-                            <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 100px;" class="d-block w-100">
+                            <img src="{% static 'img/Historia.png' %}" alt="'Carrusel'" class="img-fluid">
     
                         </div>
 
@@ -218,15 +219,15 @@
 
                         <div class="col-md-5 col-sm-12">
 
-                            <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 100px;" class="d-block w-100">
+                            <img src="{% static 'img/imagen-registrate.png' %}" alt="'Carrusel'" class="img-fluid">
     
                         </div>
     
                         <div class="col-md-7 col-sm-12">
+
+                            <h3>Aun no estas registrado entra larga fila de Usuarios??!!</h3>
     
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eius est debitis cumque repellendus perferendis aperiam architecto sequi deserunt unde eveniet, expedita quam excepturi hic nesciunt perspiciatis libero quia soluta!</p>
-    
-                            <p style="width: 75%;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci, iure? Cumque nobis, doloremque corporis autem dolorum odit delectus vero minima debitis, est labore. Ullam, voluptas quam id dolores a explicabo?</p>
+                            <p>¡Únete a nuestra plataforma y encuentra el trabajo de tus sueños! Regístrate hoy mismo para tener acceso a una amplia variedad de ofertas de trabajo y herramientas de búsqueda de empleo. Con nuestra innovadora plataforma, puedes crear y editar tu CV y postularte a trabajos en empresas reconocidas. No pierdas más tiempo buscando empleo por tu cuenta. ¡Regístrate ahora y comienza a dar el primer paso hacia tu futuro laboral!</p>
     
                             <a href="../register" class="btn btn-primary">Registrarse</a>
     

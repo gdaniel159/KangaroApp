@@ -17,6 +17,10 @@ def ayuda(request):
 
     return render(request,'Ayuda.html')
 
+def contacto(request):
+
+    return render(request,'Contactanos.html')
+
 # Intranet del administador
 
 def intranet(request):
@@ -88,6 +92,8 @@ def inspeccionar(request,id):
 
     post = Post.objects.get(id_post=id)
 
+    empresa = post.empresa
+
     solicitudes = Solicitud.objects.filter(id_post=post)
 
     usuarios = Usuario.objects.filter(solicitud__in=solicitudes).distinct()
@@ -98,7 +104,8 @@ def inspeccionar(request,id):
 
         'solicitudes': solicitudes,
         'usuarios': usuarios,
-        'formacion': formacion
+        'formacion': formacion,
+        'id_emp': empresa.id_empresa
 
     }
 
