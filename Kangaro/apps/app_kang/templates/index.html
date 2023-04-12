@@ -6,283 +6,154 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<!-- Header -->
+
+<div class="container">
+
+    <div class="row header mb-2">
+
+        <div class="col-md-6 col-sm-12 left-content d-flex align-items-center justify-content-center">
+
+            <div class="content-img d-flex justify-content-center align-items-center">
+
+                <img src="{% static 'img/icon.png' %}" alt="" class="img-fluid" width="30%" height="20%">
+                <img src="{% static 'img/word.png' %}" alt="" class="img-fluid" width="50%">
+            </div>
+
+        </div>
+
+        <div class="col-md-6 col-sm-12 right-content">
+            
+            <ul>
+
+                <li class="link-element">
+
+                    <a href="../login/">Inicio de sesion ></a>
+
+                </li>
+
+                <li class="link-element">
+
+                    <a href="../register/">Crear cuenta ></a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Navbar -->
+
+<div class="container">
 
     <div class="row">
 
-        <!-- Header -->
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-between">
 
-        <div class="container">
+            <div class="container m-2">
 
-            <div class="row header mb-2">
+                <div class="nav-title m-auto">
 
-                <div class="col-md-6 col-sm-12 left-content d-flex align-items-center justify-content-center">
-        
-                    <div class="content-img d-flex justify-content-center align-items-center">
-        
-                        <img src="{% static 'img/icon.png' %}" alt="" class="img-fluid" width="30%" height="20%">
-                        <img src="{% static 'img/word.png' %}" alt="" class="img-fluid" width="50%">
-                    </div>
-        
+                    <a class="navbar-brand" href="">Kangaro Company Perú</a>
+
                 </div>
-        
-                <div class="col-md-6 col-sm-12 right-content">
+
+            </div>
+
+            <div class="container m-2">
+
+                <button class="navbar-toggler m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
                     
-                    <ul>
+                </button>
 
-                        <li class="link-element">
+                <div class="collapse navbar-collapse" id="navbarNav">
 
-                            <a href="../login/">Inicio de sesion ></a>
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="#about">Nosotros</a>
+                        
+                        </li>
+                        
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="#history">Historia</a>
 
                         </li>
 
-                        <li class="link-element">
+                        <li class="nav-item">
 
-                            <a href="../register/">Crear cuenta ></a>
+                            <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="{% url 'ayuda' %}">Ayuda</a>
 
                         </li>
 
                     </ul>
-        
-                </div>
-        
-            </div>
-
-        </div>
-
-        <!-- Navbar -->
-
-        <div class="container">
-
-            <div class="row">
-
-                <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-between">
-
-                    <div class="container m-2">
-
-                        <div class="nav-title m-auto">
-
-                            <a class="navbar-brand" href="">Kangaro Company Perú</a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="container m-2">
-
-                        <button class="navbar-toggler m-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-
-                            <span class="navbar-toggler-icon"></span>
-                            
-                        </button>
-
-                        <div class="collapse navbar-collapse" id="navbarNav">
-
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="#about">Nosotros</a>
-                                
-                                </li>
-                                
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="#history">Historia</a>
-
-                                </li>
-
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
-
-                                </li>
-
-                                <li class="nav-item">
-
-                                    <a class="nav-link" href="{% url 'ayuda' %}">Ayuda</a>
-
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </nav>
-
-            </div>
-
-        </div>
-
-        <!-- Contenido -->
-
-        <div class="container">
-
-            <!-- Imagen representativa -->
-
-            <div class="row mt-3">
-
-                <img src="{% static 'img/banner_1.png' %}" alt="'Carrusel'" class="img-fluid">
-
-            </div>
-
-            <hr style="border: 1px solid rgb(203, 203, 203);">
-
-            <!-- Texto Informativo -->
-
-            <div class="row">
-
-                <p>Kangaro Company, permitimos que personas con carrera finalizada y conocimientos amplios en sus áreas puedan conseguir un buen puesto de empleo en alguna empresa que confiaron en nosotros. Aparte de ser de gran ayuda para conseguir empleos, tambien queremos ofrecerles a las empresas futuros empleados competentes y que ellas aspiran a tener.</p>
-
-            </div>
-
-            <hr style="border: 1px solid rgb(203, 203, 203);">
-
-            <!-- Sobre nosotros -->
-
-            <div class="row about" id="about">
-
-                <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
-
-                    <div class="row">
-
-                        <div class="col-md-4 col-sm-12">
-
-                            <img src="{% static 'img/sobre_nosotros.png' %}" alt="'Carrusel'" class="img-fluid">
-    
-                        </div>
-    
-                        <div class="col-md-8 col-sm-12">
-    
-                            <h3>Sobre nosotros</h3>
-                            <p>KANGARO COMPANY es una empresa intermediaria entre empresas y futuros empleados, dedicada a ayudar a las personas en busca de trabajo a conseguir empleo en empresas reconocidas. Nos enfocamos en brindar soluciones efectivas para la búsqueda de empleo, ofreciendo recursos y herramientas para todos los usuarios, incluyendo aquellos sin experiencia laboral o sin un currículum creado. Nuestro equipo altamente capacitado está comprometido en ofrecer un servicio personalizado y amigable para ayudar a nuestros usuarios a encontrar el trabajo que mejor se adapte a sus habilidades y necesidades. Además, nos encargamos de la búsqueda y selección de candidatos ideales para las empresas que solicitan nuestros servicios, asegurando la satisfacción de ambas partes en el proceso. Nuestra misión es contribuir a la disminución de la tasa de desempleo en la región, y estamos comprometidos en mejorar la calidad de vida de las personas a través de nuestro servicio de búsqueda de empleo eficiente y confiable.</p>
-    
-                        </div>
-
-                    </div>
 
                 </div>
 
             </div>
 
-            <hr style="border: 1px solid rgb(203, 203, 203);">
+        </nav>
 
-            <!-- Imagen representativa -->
+    </div>
 
-            <div class="row">
+</div>
 
-                <img src="{% static 'img/Banner2.png' %}" alt="'Carrusel'" class="img-fluid">
+<!-- Contenido -->
 
-            </div>
+<div class="container">
 
-            <hr style="border: 1px solid rgb(203, 203, 203);">
+    <!-- Imagen representativa -->
 
-            <!-- Historia -->
+    <div class="row mt-3">
 
-            <div class="row historia" id="history">
+        <img src="{% static 'img/banner_1.png' %}" alt="'Carrusel'" class="img-fluid">
 
-                <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
+    </div>
 
-                    <div class="row">
+    <hr style="border: 1px solid rgb(203, 203, 203);">
 
-                        <div class="col-md-8 col-sm-12">
+    <!-- Texto Informativo -->
 
-                            <h3>Historia</h3>
-                            <p>KANGARO COMPANY se creó el 29 de abril de 2023 para ayudar a personas sin empleo a conseguir trabajo en empresas reconocidas. La idea surgió después de una breve discusión sobre las dificultades que se les presenta a muchas personas a la hora de buscar empleo, pasando por un largo tiempo de desempleo. 
-                            KANGARO COMPANY es una empresa comprometida a ayudar a las personas en busca de empleo, incluyendo aquellas sin experiencia laboral o sin un currículum creado. Ofreciendo recursos y herramientas para facilitarles la búsqueda de Trabajo en empresas reconocidas mediante una plataforma innovadora y un equipo dedicado en brindar soluciones efectivas para la búsqueda de empleo, La empresa también brinda servicio a las empresas en la búsqueda y selección de candidatos ideales, permitiéndoles visualizar su CV y conseguir potenciales trabajadores de manera eficiente. Esperando contribuir en la disminución de la tasa de desempleo en la región.</p>
-    
-                        </div>
-    
-                        <div class="col-md-4 col-sm-12">
-    
-                            <img src="{% static 'img/Historia.png' %}" alt="'Carrusel'" class="img-fluid">
-    
-                        </div>
+    <div class="row">
 
-                    </div>
+        <p>Kangaro Company, permitimos que personas con carrera finalizada y conocimientos amplios en sus áreas puedan conseguir un buen puesto de empleo en alguna empresa que confiaron en nosotros. Aparte de ser de gran ayuda para conseguir empleos, tambien queremos ofrecerles a las empresas futuros empleados competentes y que ellas aspiran a tener.</p>
 
-                </div>
+    </div>
 
-            </div>
+    <hr style="border: 1px solid rgb(203, 203, 203);">
 
-            <hr style="border: 1px solid rgb(203, 203, 203);">
+    <!-- Sobre nosotros -->
 
-            <!-- Historia -->
+    <div class="row about" id="about">
 
-            <div class="row register">
-
-                <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
-
-                    <div class="row">
-
-                        <div class="col-md-5 col-sm-12">
-
-                            <img src="{% static 'img/imagen-registrate.png' %}" alt="'Carrusel'" class="img-fluid">
-    
-                        </div>
-    
-                        <div class="col-md-7 col-sm-12">
-
-                            <h3>Aun no estas registrado entra larga fila de Usuarios??!!</h3>
-    
-                            <p>¡Únete a nuestra plataforma y encuentra el trabajo de tus sueños! Regístrate hoy mismo para tener acceso a una amplia variedad de ofertas de trabajo y herramientas de búsqueda de empleo. Con nuestra innovadora plataforma, puedes crear y editar tu CV y postularte a trabajos en empresas reconocidas. No pierdas más tiempo buscando empleo por tu cuenta. ¡Regístrate ahora y comienza a dar el primer paso hacia tu futuro laboral!</p>
-    
-                            <a href="../register" class="btn btn-primary">Registrarse</a>
-    
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <hr style="border: 1px solid rgb(203, 203, 203);">
-            
-            <!--  -->
+        <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
 
             <div class="row">
 
-                <div class="col-md-12 p-5">
+                <div class="col-md-4 col-sm-12">
 
-                    <h3 class="text-center">Titulo que no se cual es</h3>
-
-                    <div class="container-img-company text-center mt-4">
-
-                        <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
-                        <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
-                        <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
-                        <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
-                        <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
-
-                    </div>
+                    <img src="{% static 'img/sobre_nosotros.png' %}" alt="'Carrusel'" class="img-fluid">
 
                 </div>
 
-            </div>
+                <div class="col-md-8 col-sm-12">
 
-            <div class="row">
-
-                <div class="col-md-12 d-flex justify-content-center align-items-center mt-4 mb-4">
-
-                    <div class="row">
-
-                        <div class="col-md-5 col-sm-12 text-center p-2">
-    
-                            <h3 class="">Title</h3>
-                            <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: auto;" class="d-block w-100">
-        
-                        </div>
-        
-                        <div class="col-md-7 col-sm-12 p-2">
-                            
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eius est debitis cumque repellendus perferendis aperiam architecto sequi deserunt unde eveniet, expedita quam excepturi hic nesciunt perspiciatis libero quia soluta!</p>
-        
-                        </div>
-
-                    </div>
+                    <h3>Sobre nosotros</h3>
+                    <p>KANGARO COMPANY es una empresa intermediaria entre empresas y futuros empleados, dedicada a ayudar a las personas en busca de trabajo a conseguir empleo en empresas reconocidas. Nos enfocamos en brindar soluciones efectivas para la búsqueda de empleo, ofreciendo recursos y herramientas para todos los usuarios, incluyendo aquellos sin experiencia laboral o sin un currículum creado. Nuestro equipo altamente capacitado está comprometido en ofrecer un servicio personalizado y amigable para ayudar a nuestros usuarios a encontrar el trabajo que mejor se adapte a sus habilidades y necesidades. Además, nos encargamos de la búsqueda y selección de candidatos ideales para las empresas que solicitan nuestros servicios, asegurando la satisfacción de ambas partes en el proceso. Nuestra misión es contribuir a la disminución de la tasa de desempleo en la región, y estamos comprometidos en mejorar la calidad de vida de las personas a través de nuestro servicio de búsqueda de empleo eficiente y confiable.</p>
 
                 </div>
 
@@ -290,51 +161,121 @@
 
         </div>
 
-        <!-- Contactenos -->
+    </div>
 
-        <!-- Ayuda -->
+    <hr style="border: 1px solid rgb(203, 203, 203);">
 
-        <!-- Footer -->
+    <!-- Imagen representativa -->
 
-        <div class="container">
+    <div class="row">
+
+        <img src="{% static 'img/Banner2.png' %}" alt="'Carrusel'" class="img-fluid">
+
+    </div>
+
+    <hr style="border: 1px solid rgb(203, 203, 203);">
+
+    <!-- Historia -->
+
+    <div class="row historia" id="history">
+
+        <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
 
             <div class="row">
 
-                <footer class="bg-dark text-center text-white">
+                <div class="col-md-8 col-sm-12">
 
-                    <!-- Grid container -->
-            
-                    <!-- Section: Social media -->
-                    <section class="mt-2 mb-2">
-            
-                        <!-- Facebook -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                
-                        <!-- Twitter -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                
-                        <!-- Google -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
-                        role="button"><i class="fab fa-google"></i></a>
-                
-                        <!-- Instagram -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-                
-                        <!-- Linkedin -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-            
-                    </section>
+                    <h3>Historia</h3>
+                    <p>KANGARO COMPANY se creó el 29 de abril de 2023 para ayudar a personas sin empleo a conseguir trabajo en empresas reconocidas. La idea surgió después de una breve discusión sobre las dificultades que se les presenta a muchas personas a la hora de buscar empleo, pasando por un largo tiempo de desempleo. 
+                    KANGARO COMPANY es una empresa comprometida a ayudar a las personas en busca de empleo, incluyendo aquellas sin experiencia laboral o sin un currículum creado. Ofreciendo recursos y herramientas para facilitarles la búsqueda de Trabajo en empresas reconocidas mediante una plataforma innovadora y un equipo dedicado en brindar soluciones efectivas para la búsqueda de empleo, La empresa también brinda servicio a las empresas en la búsqueda y selección de candidatos ideales, permitiéndoles visualizar su CV y conseguir potenciales trabajadores de manera eficiente. Esperando contribuir en la disminución de la tasa de desempleo en la región.</p>
 
-                </footer>
+                </div>
 
-                <!-- Copyright -->
-            
-                <div class="text-center p-3 text-white bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
+                <div class="col-md-4 col-sm-12">
+
+                    <img src="{% static 'img/Historia.png' %}" alt="'Carrusel'" class="img-fluid">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr style="border: 1px solid rgb(203, 203, 203);">
+
+    <!-- Historia -->
+
+    <div class="row register">
+
+        <div class="col-md-12 d-flex align-items-center justify-content-center p-3">
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12">
+
+                    <img src="{% static 'img/imagen-registrate.png' %}" alt="'Carrusel'" class="img-fluid">
+
+                </div>
+
+                <div class="col-md-7 col-sm-12">
+
+                    <h3>Aun no estas registrado entra larga fila de Usuarios??!!</h3>
+
+                    <p>¡Únete a nuestra plataforma y encuentra el trabajo de tus sueños! Regístrate hoy mismo para tener acceso a una amplia variedad de ofertas de trabajo y herramientas de búsqueda de empleo. Con nuestra innovadora plataforma, puedes crear y editar tu CV y postularte a trabajos en empresas reconocidas. No pierdas más tiempo buscando empleo por tu cuenta. ¡Regístrate ahora y comienza a dar el primer paso hacia tu futuro laboral!</p>
+
+                    <a href="../register" class="btn btn-primary">Registrarse</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr style="border: 1px solid rgb(203, 203, 203);">
+    
+    <!--  -->
+
+    <div class="row">
+
+        <div class="col-md-12 p-5">
+
+            <h3 class="text-center">Empresas que confian en nosotros</h3>
+
+            <div class="container-img-company text-center mt-4">
+
+                <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+                <img src="#" alt="'Carrusel'" style="background-color: #ccc; height: 50px; width: 50px;" class="img-fluid">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 d-flex justify-content-center align-items-center mt-4 mb-4">
+
+            <div class="row">
+
+                <div class="col-md-5 col-sm-12 text-center p-2">
+
+                    <h3 class="">TERMINOS Y CONDICIONES</h3>
+                    <img src="{% static 'img/Terminos.png' %}" alt="'Carrusel'"  class="img-fluid">
+
+                </div>
+
+                <div class="col-md-7 col-sm-12 p-2">
                     
-                    © 2023 Copyright:
-                
-                    <a class="text-muted" href="">kangaro.com</a>
-        
+                    <p>Es importante que leas detenidamente los términos y condiciones de uso antes de utilizar nuestros servicios. Al hacer uso de nuestra plataforma, aceptas y te comprometes a cumplir con todas las disposiciones y regulaciones establecidas en los términos y condiciones de uso. En caso de no estar de acuerdo con alguna de las condiciones, te recomendamos que no utilices nuestros servicios. Asimismo, nos reservamos el derecho de actualizar y modificar estos términos y condiciones en cualquier momento, por lo que te recomendamos que revises periódicamente esta sección. Si tienes alguna pregunta o inquietud sobre estos términos y condiciones, no dudes en ponerte en contacto con nosotros.</p>
+
                 </div>
 
             </div>

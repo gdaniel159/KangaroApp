@@ -6,246 +6,191 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<!-- Header -->
+
+<div class="container header mb-2">
 
     <div class="row">
 
-        <!-- Header -->
+        <div class="col-md-6 col-sm-12 left-content d-flex align-items-center justify-content-center">
 
-        <div class="container header mb-2">
+            <div class="content-img d-flex justify-content-center align-items-center">
 
-            <div class="row">
-
-                <div class="col-md-6 col-sm-12 left-content d-flex align-items-center justify-content-center">
-
-                    <div class="content-img d-flex justify-content-center align-items-center">
-        
-                        <img src="{% static 'img/icon.png' %}" alt="" class="img-fluid" width="30%" height="20%">
-                        <img src="{% static 'img/word.png' %}" alt="" class="img-fluid" width="50%">
-                    </div>
-        
-                </div>
-        
-                <div class="col-md-6 col-sm-12 right-content">
-                    
-                    <p>Cuenta de administrador > {{admin}} </p>
-
-                    <ul>
-
-                        <li class="link-element">
-
-                            <a href="../login">Cerrar sesion ></a>
-
-                        </li>
-
-                    </ul>
-        
-                </div>
-
+                <img src="{% static 'img/icon.png' %}" alt="" class="img-fluid" width="30%" height="20%">
+                <img src="{% static 'img/word.png' %}" alt="" class="img-fluid" width="50%">
             </div>
 
         </div>
 
-        <!-- Navbar -->
+        <div class="col-md-6 col-sm-12 right-content">
+            
+            <p>Cuenta de administrador > {{admin}} </p>
 
-        <div class="container">
+            <ul>
 
-            <div class="row">
+                <li class="link-element">
 
-                <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-between">
+                    <a href="../login">Cerrar sesion ></a>
 
-                    <div class="container p-2">
-        
-                        <span class="navbar-brand mb-0 h1">Kangaro Company Perú</span>
-                        <span class="navbar-brand mb-0 h1"><a href="{% url 'registro_empresa' %}" style="text-decoration: none; color: #fff;" class="link_emp">Crear usuarios empresariales</a></span>
-        
-                    </div>
-                    
-                </nav>
+                </li>
 
-            </div>
+            </ul>
 
         </div>
 
-        <!-- Contenido -->
+    </div>
 
-        <div class="container">
+</div>
 
-            <div class="row m-5">
+<!-- Navbar -->
 
-                <h2 class="mb-3 mt-3">Gestion de Usuarios</h2>
+<div class="container">
 
-                <!-- Tabla de usuarios -->
+    <div class="row">
 
-                <div class="col-md-12 mt-4">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-between">
 
-                    <table class="table table-hover table-responsive text-center">
+            <div class="container p-2">
 
-                        <thead class="table-dark">
-
-                            <tr>
-
-                                <th>ID Usuario</th>
-                                <th>Profesion</th>
-                                <th>Nombres</th>
-                                <th>Correo</th>
-                                <th>DNI</th>
-                                <th>Sexo</th>
-                                <th>Usuario</th>
-                                <th>Contraseña</th>
-                                <th>Acciones</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            {% for x in user%}
-
-                            <tr>
-
-                                <td>{{x.id_usuario}}</td>
-                                <td>{{x.id_categoria_profesional}}</td>
-                                <td>{{x.nombresUs}}</td>
-                                <td>{{x.correoUs}}</td>
-                                <td>{{x.dniUs}}</td>
-                                <td>{{x.sexoUs}}</td>
-                                <td>{{x.userUs}}</td>
-                                <td>{{x.passwordUs}}</td>
-                                <td class="text-center">
-
-                                    <a href="{% url 'editar_usuario' id=x.id_usuario %}" class="btn btn-primary mb-2 d-block">Editar</a>
-                                    <a href="../delete_user/{{x.id_usuario}}" class="btn btn-danger">Delete</a>
-
-                                </td>
-
-                            </tr>
-
-                            {% endfor %}
-
-                        </tbody>
-
-                    </table>
-
-                </div>
+                <span class="navbar-brand mb-0 h1">Kangaro Company Perú</span>
+                <span class="navbar-brand mb-0 h1"><a href="{% url 'registro_empresa' %}" style="text-decoration: none; color: #fff;" class="link_emp">Crear usuarios empresariales</a></span>
 
             </div>
+            
+        </nav>
+
+    </div>
+
+</div>
+
+<!-- Contenido -->
+
+<div class="container">
+
+    <div class="row m-5">
+
+        <h2 class="mb-3 mt-3">Gestion de Usuarios</h2>
+
+        <!-- Tabla de usuarios -->
+
+        <div class="col-md-12 mt-4">
+
+            <table class="table table-hover table-responsive text-center">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID Usuario</th>
+                        <th>Profesion</th>
+                        <th>Nombres</th>
+                        <th>Correo</th>
+                        <th>DNI</th>
+                        <th>Sexo</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for x in user%}
+
+                    <tr>
+
+                        <td>{{x.id_usuario}}</td>
+                        <td>{{x.id_categoria_profesional}}</td>
+                        <td>{{x.nombresUs}}</td>
+                        <td>{{x.correoUs}}</td>
+                        <td>{{x.dniUs}}</td>
+                        <td>{{x.sexoUs}}</td>
+                        <td>{{x.userUs}}</td>
+                        <td>{{x.passwordUs}}</td>
+                        <td class="text-center">
+
+                            <a href="{% url 'editar_usuario' id=x.id_usuario %}" class="btn btn-primary mb-2 d-block">Editar</a>
+                            <a href="../delete_user/{{x.id_usuario}}" class="btn btn-danger">Delete</a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
 
         </div>
 
-        <hr style="border: 1px solid rgb(230, 230, 230);">
+    </div>
 
-        <div class="container">
+</div>
 
-            <div class="row m-5">
+<hr style="border: 1px solid rgb(230, 230, 230);">
 
-                <h2 class="mb-3">Gestion de empresas</h2>
+<div class="container">
 
-                <!-- Tabla de empresas -->
+    <div class="row m-5">
 
-                <div class="col-md-12">
+        <h2 class="mb-3">Gestion de empresas</h2>
 
-                    <table class="table table-hover table-responsive text-center">
+        <!-- Tabla de empresas -->
 
-                        <thead class="table-dark">
+        <div class="col-md-12">
 
-                            <tr>
+            <table class="table table-hover table-responsive text-center">
 
-                                <th>ID Empresa</th>
-                                <th>Tipo de empresa</th>
-                                <th>Nombre</th>
-                                <th>Correo</th>
-                                <th>RUC</th>
-                                <th>Usuario</th>
-                                <th>Contraseña</th>
-                                <th>Url de sitio</th>
-                                <th>Acciones</th>
+                <thead class="table-dark">
 
-                            </tr>
+                    <tr>
 
-                        </thead>
+                        <th>ID Empresa</th>
+                        <th>Tipo de empresa</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>RUC</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Url de sitio</th>
+                        <th>Acciones</th>
 
-                        <tbody>
+                    </tr>
 
-                            {% for x in emp%}
+                </thead>
 
-                            <tr>
+                <tbody>
 
-                                <td>{{x.id_empresa}}</td>
-                                <td>{{x.id_tipo_empresa}}</td>
-                                <td>{{x.nombreEmp}}</td>
-                                <td>{{x.correoEmp}}</td>
-                                <td>{{x.rucEmp}}</td>
-                                <td>{{x.userEmp}}</td>
-                                <td>{{x.passwordEmp}}</td>
-                                <td><a href="{{x.url_sitioEmp}}" target="_blank">{{x.url_sitioEmp}}</a></td>
-                                <td class="text-center">
+                    {% for x in emp%}
 
-                                    <a href="{% url 'editar_empresa' id=x.id_empresa %}" class="btn btn-primary mb-2 d-block">Editar</a>
-                                    <a href="../delete_emp/{{x.id_empresa}}" class="btn btn-danger">Delete</a>
+                    <tr>
 
-                                </td>
+                        <td>{{x.id_empresa}}</td>
+                        <td>{{x.id_tipo_empresa}}</td>
+                        <td>{{x.nombreEmp}}</td>
+                        <td>{{x.correoEmp}}</td>
+                        <td>{{x.rucEmp}}</td>
+                        <td>{{x.userEmp}}</td>
+                        <td>{{x.passwordEmp}}</td>
+                        <td><a href="{{x.url_sitioEmp}}" target="_blank">{{x.url_sitioEmp}}</a></td>
+                        <td class="text-center">
 
-                            </tr>
+                            <a href="{% url 'editar_empresa' id=x.id_empresa %}" class="btn btn-primary mb-2 d-block">Editar</a>
+                            <a href="../delete_emp/{{x.id_empresa}}" class="btn btn-danger">Delete</a>
 
-                            {% endfor %}
+                        </td>
 
-                        </tbody>
+                    </tr>
 
-                    </table>
+                    {% endfor %}
 
-                </div>
+                </tbody>
 
-            </div>
+            </table>
 
-        </div>
-
-        <!-- Footer -->
-
-        <div class="container">
-
-            <div class="row">
-    
-                <footer class="bg-dark text-center text-white">
-    
-                    <!-- Grid container -->
-            
-                    <!-- Section: Social media -->
-                    <section class="mt-2 mb-2">
-            
-                        <!-- Facebook -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                
-                        <!-- Twitter -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                
-                        <!-- Google -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
-                        role="button"><i class="fab fa-google"></i></a>
-                
-                        <!-- Instagram -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-                
-                        <!-- Linkedin -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-            
-                    </section>
-    
-                </footer>
-    
-                <!-- Copyright -->
-            
-                <div class="text-center p-3 text-white bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
-                      
-                    © 2023 Copyright:
-                  
-                    <a class="text-muted" href="">kangaro.com</a>
-        
-                </div>
-    
-            </div>
-    
         </div>
 
     </div>

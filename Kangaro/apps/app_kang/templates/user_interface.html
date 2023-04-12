@@ -6,229 +6,29 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<!-- Header -->
 
-    <div class="row">
+<div class="container">
 
-        <!-- Header -->
+    <div class="row" style="margin: 0px 20px 0px 20px;">
 
-        <div class="container">
-
-            <div class="row" style="margin: 0px 20px 0px 20px;">
-
-                <div class="col-md-6 col-sm-12 d-flex align-items-center">
-                    {% for user in users %}
-                        <a href="#"><i class='fas fa-bars' id="menu-icon"></i></a>
-                        <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
-                        <p>{{user.nombresUs}}</p>
-                    {% endfor %}
-                </div>
-    
-                <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">
-    
-                    <div class="right-content">
-    
-                        <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
-    
-                            <h2>KANGARO CORP</h2>
-                            <p>Conectate con el mundo</p>
-    
-                        </div>
-    
-                    </div>
-    
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="dropdown-menu" id="menu-dropdown" style="position: fixed; top: 0; left: 0; width: 250px; background-color: white; padding: 20px; height: 100vh;">
-
-            <!-- Enlace de Cerrar -->
-            <div class="close-container text-end" style="font-size: 20px;">
-
-                <a class="" href="#" id="close-menu" style="text-decoration: none; color: #fb0000;">X</a>
-
-            </div>
-            <div class="dropdown-divider"></div>
+        <div class="col-md-6 col-sm-12 d-flex align-items-center">
             {% for user in users %}
-                <h4>{{user.nombresUs}}</h4>
+                <a href="#"><i class='fas fa-bars' id="menu-icon"></i></a>
+                <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
+                <p>{{user.nombresUs}}</p>
             {% endfor %}
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Pagina Principal</a>
-            {% for user in users %}
-                <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Ver perfil</a>
-            {% endfor %}
-            <a class="dropdown-item" href="../login">Cerrar sesion</a>
-            
         </div>
 
-        <!-- Navbar -->
+        <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">
 
-        <div class="container">
+            <div class="right-content">
 
-            <div class="row">
+                <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
 
-                <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+                    <h2>KANGARO CORP</h2>
+                    <p>Conectate con el mundo</p>
 
-                    <ul class="navbar-nav m-3">
-
-                        <li class="nav-item">
-
-                            <a href="" class="nav-link">Informes de la pagina</a>
-
-                        </li>
-
-                        <li class="nav-item">
-
-                            <a href="" class="nav-link">Reglas para usuario</a>
-
-                        </li>
-
-                    </ul>
-
-                </nav>
-
-            </div>
-
-        </div>
-
-        <!-- Contenido -->
-
-        <div class="container">
-
-            <div class="row m-5">
-
-                {% for publicacion in pub_emp %}
-
-                    <div class="col-md-12 mb-2" style="border: 1px solid #000;">
-
-                        <h2 class="">Publicaciones realizadas</h2>
-
-                    </div>
-
-                    <div class="col-md-12 d-flex mb-4" style="border:1px solid #000">
-
-                        <div class="col-md-5 p-3">
-
-                            <div class="headerpub d-flex" style="margin: 10px 0 10px 0;">
-
-                                <img src="{{ publicacion.empresa.image_url }}" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
-                                
-                                <div class="nombreCompay" style="margin: 0 0 0 20px;">
-                                    <h3>{{publicacion.empresa}}</h3>
-                                    <p>{{publicacion.fecha_creacion}}</p>
-                                </div>
-
-                            </div>
-
-                            <div class="requerimientos p-3" style="border:1px solid #ccc;">
-                                
-                                <h3>Requerimientos</h3>
-                                <p>{{publicacion.requerimientos}}</p>
-
-                            </div>
-                            
-                            <div class="btn-section mt-2">
-
-                                <div class="btn-interes">
-
-                                    {% for user in users %}
-                                        <a href="{% url 'solicitud' id_usuario=user.id_usuario id_post=publicacion.id_post %}" class="btn btn-success form-control" id="btn">Me interesa</a>
-                                    {% endfor %}
-
-                                </div>
-
-                                <div class="message-content">
-
-                                    {% if success_messages %}
-
-                                        {% for message in success_messages %}
-
-                                            <p>{{ message }}</p>
-
-                                        {% endfor %}
-
-                                    {% endif %}
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-7 p-3">
-
-                            <h3 class="text-center">Asunto del post</h3>
-
-                            <div class="container-post-company p-3" style="border:1px solid #000">
-                                
-                                {% for detalle in pub_detalle %}
-
-                                    {% if detalle.post.id_post == publicacion.id_post %}
-
-                                        <h4>{{detalle.titulo}}</h4>
-                                        <p>{{detalle.descripcion}}</p>
-
-                                    {% endif %}
-
-                                {% endfor %}
-
-                                <a href="" class="btn btn-primary">Leer post completo</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-        </div>
-
-        <!-- Footer -->
-
-        <div class="container">
-
-            <div class="row">
-
-                <footer class="bg-dark text-center text-white">
-
-                    <!-- Grid container -->
-            
-                    <!-- Section: Social media -->
-                    <section class="mt-2 mb-2">
-            
-                        <!-- Facebook -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                
-                        <!-- Twitter -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                
-                        <!-- Google -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
-                        role="button"><i class="fab fa-google"></i></a>
-                
-                        <!-- Instagram -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-                
-                        <!-- Linkedin -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-            
-                    </section>
-
-                </footer>
-
-                <!-- Copyright -->
-            
-                <div class="text-center p-3 text-white bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
-                    
-                    © 2023 Copyright:
-                
-                    <a class="text-muted" href="">kangaro.com</a>
-        
                 </div>
 
             </div>
@@ -238,5 +38,151 @@
     </div>
 
 </div>
+
+<div class="dropdown-menu" id="menu-dropdown" style="position: fixed; top: 0; left: 0; width: 250px; background-color: white; padding: 20px; height: 100vh;">
+
+    <!-- Enlace de Cerrar -->
+    <div class="close-container text-end" style="font-size: 20px;">
+
+        <a class="" href="#" id="close-menu" style="text-decoration: none; color: #fb0000;">X</a>
+
+    </div>
+    <div class="dropdown-divider"></div>
+    {% for user in users %}
+        <h4>{{user.nombresUs}}</h4>
+    {% endfor %}
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Pagina Principal</a>
+    {% for user in users %}
+        <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Ver perfil</a>
+    {% endfor %}
+    <a class="dropdown-item" href="../login">Cerrar sesion</a>
+    
+</div>
+
+<!-- Navbar -->
+
+<div class="container">
+
+    <div class="row">
+
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+
+            <ul class="navbar-nav m-3">
+
+                <li class="nav-item">
+
+                    <a href="" class="nav-link">Informes de la pagina</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a href="" class="nav-link">Reglas para usuario</a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+
+<!-- Contenido -->
+
+<div class="container">
+
+    <div class="row m-5">
+
+        {% for publicacion in pub_emp %}
+
+            <div class="col-md-12 mb-2" style="border: 1px solid #000;">
+
+                <h2 class="">Publicaciones realizadas</h2>
+
+            </div>
+
+            <div class="col-md-12 d-flex mb-4" style="border:1px solid #000">
+
+                <div class="col-md-5 p-3">
+
+                    <div class="headerpub d-flex" style="margin: 10px 0 10px 0;">
+
+                        <img src="{{ publicacion.empresa.image_url }}" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
+                        
+                        <div class="nombreCompay" style="margin: 0 0 0 20px;">
+                            <h3>{{publicacion.empresa}}</h3>
+                            <p>{{publicacion.fecha_creacion}}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="requerimientos p-3" style="border:1px solid #ccc;">
+                        
+                        <h3>Requerimientos</h3>
+                        <p>{{publicacion.requerimientos}}</p>
+
+                    </div>
+                    
+                    <div class="btn-section mt-2">
+
+                        <div class="btn-interes">
+
+                            {% for user in users %}
+                                <a href="{% url 'solicitud' id_usuario=user.id_usuario id_post=publicacion.id_post %}" class="btn btn-success form-control" id="btn">Me interesa</a>
+                            {% endfor %}
+
+                        </div>
+
+                        <div class="message-content">
+
+                            {% if success_messages %}
+
+                                {% for message in success_messages %}
+
+                                    <p>{{ message }}</p>
+
+                                {% endfor %}
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-7 p-3">
+
+                    <h3 class="text-center">Asunto del post</h3>
+
+                    <div class="container-post-company p-3" style="border:1px solid #000">
+                        
+                        {% for detalle in pub_detalle %}
+
+                            {% if detalle.post.id_post == publicacion.id_post %}
+
+                                <h4>{{detalle.titulo}}</h4>
+                                <p>{{detalle.descripcion}}</p>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                        <a href="" class="btn btn-primary">Leer post completo</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
 <script type="text/javascript" src="{% static 'js/user.js' %}"></script>
 {% endblock content %}

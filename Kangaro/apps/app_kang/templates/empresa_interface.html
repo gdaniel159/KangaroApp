@@ -6,211 +6,154 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<!-- Header -->
+<div class="container">
 
     <div class="row">
 
-        <!-- Header -->
-        <div class="container">
-
-            <div class="row">
-
-                {% for emp in emps %}
-                
-                    <div class="col-md-12 text-center mt-4">
-
-                        <img src="{{emp.profileEmp.url}}" style="width:150px; height:150px;">
-                        <p style="font-size: 20px;">{{emp.nombreEmp}}</p>
-
-                    </div>
-
-                    <div class="container-contenido d-flex justify-content-between align-items-center">
-
-                        <div class="context-left text-center" style="margin-left: 50px; font-size: 20px;">
-
-                            <i class='far fa-paper-plane'></i> {{emp.correoEmp}}
-
-                        </div>
-
-                        <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
-    
-                            <h2>KANGARO CORP</h2>
-                            <p>Conectate con el mundo</p>
-
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-        </div>
-
-        <!-- Navbar -->
-
-        <div class="container">
-
-            <div class="row">
-
-                <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
-
-                    <ul class="navbar-nav m-3">
-
-                        <li class="nav-item">
-
-                            <a href="" class="nav-link">Editar Cuenta</a>
-
-                        </li>
-
-                        <li class="nav-item">
-
-                            <a href="" class="nav-link">Reazilar Post</a>
-
-                        </li>
-
-                        <li class="nav-item">
-
-                            <a href="../login" class="nav-link">Cerrar Sesion</a>
-
-                        </li>
-
-                    </ul>
-
-                </nav>
-
-            </div>
-
-        </div>
+        {% for emp in emps %}
         
-        <!-- Contenido -->
+            <div class="col-md-12 text-center mt-4">
 
-        <div class="container">
+                <img src="{{emp.profileEmp.url}}" style="width:150px; height:150px;">
+                <p style="font-size: 20px;">{{emp.nombreEmp}}</p>
 
-            <div class="row m-5">
+            </div>
 
-                <div class="col-md-12 mt-5 mb-2" style="border: 1px solid #000;">
+            <div class="container-contenido d-flex justify-content-between align-items-center">
 
-                    <h2 class="">Publicaciones realizadas</h2>
+                <div class="context-left text-center" style="margin-left: 50px; font-size: 20px;">
+
+                    <i class='far fa-paper-plane'></i> {{emp.correoEmp}}
 
                 </div>
 
-                {% for publicacion in pub_emp %}
+                <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
 
-                    <div class="col-md-12 d-flex mb-4" style="border:1px solid #000">
+                    <h2>KANGARO CORP</h2>
+                    <p>Conectate con el mundo</p>
 
-                        <div class="col-md-5 p-3">
-
-                            <div class="headerpub d-flex" style="margin: 10px 0 10px 0;">
-
-                                <img src="{{ publicacion.empresa.image_url }}" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
-                                
-                                <div class="nombreCompay" style="margin: 0 0 0 20px;">
-                                    <h3>{{publicacion.empresa}}</h3>
-                                    <p>{{publicacion.fecha_creacion}}</p>
-                                </div>
-
-                            </div>
-
-                            <div class="requerimientos p-3" style="border:1px solid #ccc;">
-                                
-                                <h3>Requerimientos</h3>
-                                <p>{{publicacion.requerimientos}}</p>
-
-                            </div>
-                            
-                            <div class="btn-section d-flex justify-content-between mt-2">
-
-                                {% for emp in emps %}
-                                
-                                    <a href="../inspeccionar/{{publicacion.id_post}}" class="btn btn-danger form-control">Inspeccionar</a>
-
-                                {% endfor %}
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-7 p-3">
-
-                            <h3 class="text-center">Asunto del post</h3>
-
-                            <div class="container-post-company p-3" style="border:1px solid #000">
-                                
-                                {% for detalle in pub_detalle %}
-
-                                    {% if detalle.post.id_post == publicacion.id_post %}
-
-                                        <h4>{{detalle.titulo}}</h4>
-                                        <p>{{detalle.descripcion}}</p>
-
-                                    {% endif %}
-
-                                {% endfor %}
-
-                                <a href="" class="btn btn-primary">Leer post completo</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-        </div>
-
-        <!-- Footer -->
-
-        <div class="container">
-
-            <div class="row">
-
-                <footer class="bg-dark text-center text-white">
-
-                    <!-- Grid container -->
-            
-                    <!-- Section: Social media -->
-                    <section class="mt-2 mb-2">
-            
-                        <!-- Facebook -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                
-                        <!-- Twitter -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                
-                        <!-- Google -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
-                        role="button"><i class="fab fa-google"></i></a>
-                
-                        <!-- Instagram -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-                
-                        <!-- Linkedin -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-            
-                    </section>
-
-                </footer>
-
-                <!-- Copyright -->
-            
-                <div class="text-center p-3 text-white bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
-                    
-                    © 2023 Copyright:
-                
-                    <a class="text-muted" href="">kangaro.com</a>
-        
                 </div>
 
             </div>
 
-        </div>
+        {% endfor %}
 
     </div>
 
 </div>
+
+<!-- Navbar -->
+
+<div class="container">
+
+    <div class="row">
+
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+
+            <ul class="navbar-nav m-3">
+
+                <li class="nav-item">
+
+                    <a href="" class="nav-link">Editar Cuenta</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a href="" class="nav-link">Reazilar Post</a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a href="../login" class="nav-link">Cerrar Sesion</a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+
+<!-- Contenido -->
+
+<div class="container">
+
+    <div class="row m-5">
+
+        <div class="col-md-12 mt-5 mb-2" style="border: 1px solid #000;">
+
+            <h2 class="">Publicaciones realizadas</h2>
+
+        </div>
+
+        {% for publicacion in pub_emp %}
+
+            <div class="col-md-12 d-flex mb-4" style="border:1px solid #000">
+
+                <div class="col-md-5 p-3">
+
+                    <div class="headerpub d-flex" style="margin: 10px 0 10px 0;">
+
+                        <img src="{{ publicacion.empresa.image_url }}" alt="" class="img-fluid" style="background-color: #ccc; width: 80px; height: 80px;">
+                        
+                        <div class="nombreCompay" style="margin: 0 0 0 20px;">
+                            <h3>{{publicacion.empresa}}</h3>
+                            <p>{{publicacion.fecha_creacion}}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="requerimientos p-3" style="border:1px solid #ccc;">
+                        
+                        <h3>Requerimientos</h3>
+                        <p>{{publicacion.requerimientos}}</p>
+
+                    </div>
+                    
+                    <div class="btn-section d-flex justify-content-between mt-2">
+
+                        {% for emp in emps %}
+                        
+                            <a href="../inspeccionar/{{publicacion.id_post}}" class="btn btn-danger form-control">Inspeccionar</a>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-7 p-3">
+
+                    <h3 class="text-center">Asunto del post</h3>
+
+                    <div class="container-post-company p-3" style="border:1px solid #000">
+                        
+                        {% for detalle in pub_detalle %}
+
+                            {% if detalle.post.id_post == publicacion.id_post %}
+
+                                <h4>{{detalle.titulo}}</h4>
+                                <p>{{detalle.descripcion}}</p>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                        <a href="" class="btn btn-primary">Leer post completo</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
 
 </div>
 

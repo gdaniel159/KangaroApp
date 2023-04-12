@@ -137,7 +137,6 @@ def curriculum(request,id):
 
 def crear_curriculum(request,nombre):
 
-
     form = CurriculumForm()
     user = Usuario.objects.get(nombresUs=nombre)
 
@@ -151,6 +150,7 @@ def crear_curriculum(request,nombre):
             data.save()
 
             return redirect('crear_curriculum')
+        
         else:
 
             return HttpResponse("Registro Invalido")  

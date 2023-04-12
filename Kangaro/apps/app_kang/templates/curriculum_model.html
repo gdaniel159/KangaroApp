@@ -6,238 +6,29 @@
 {% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<!-- Header -->
 
-    <div class="row">
+<div class="container">
 
-        <!-- Header -->
+    <div class="row" style="margin: 0px 20px 0px 20px;">
 
-        <div class="container">
-
-            <div class="row" style="margin: 0px 20px 0px 20px;">
-
-                <div class="col-md-6 col-sm-12 d-flex align-items-center">
-                    {% for user in users %}
-                        <a href="#"><i class='fas fa-bars' id="menu-icon"></i></a>
-                        <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
-                        <p>{{user.nombresUs}}</p>
-                    {% endfor %}
-                </div>
-    
-                <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">
-    
-                    <div class="right-content">
-    
-                        <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
-    
-                            <h2>KANGARO CORP</h2>
-                            <p>Conectate con el mundo</p>
-    
-                        </div>
-    
-                    </div>
-    
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="dropdown-menu" id="menu-dropdown" style="position: fixed; top: 0; left: 0; width: 250px; background-color: white; padding: 20px; height: 100vh;">
+        <div class="col-md-6 col-sm-12 d-flex align-items-center">
             {% for user in users %}
-                <h4>{{user.nombresUs}}</h4>
+                <a href="#"><i class='fas fa-bars' id="menu-icon"></i></a>
+                <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
+                <p>{{user.nombresUs}}</p>
             {% endfor %}
-            <div class="dropdown-divider"></div>
-            {% for user in users %}
-                <a class="dropdown-item" href="../homepage_user/{{user.id_usuario}}">Ver Perfil</a>
-                <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Visualizar CV</a>
-            {% endfor %}
-            <a class="dropdown-item" href="../login">Cerrar sesion</a>
-            <div class="dropdown-divider"></div>
-            <!-- Enlace de Cerrar -->
-            <a class="dropdown-item" href="#" id="close-menu">Cerrar</a>
         </div>
 
-        <!-- Navbar -->
+        <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-end text-end">
 
-        <div class="container">
+            <div class="right-content">
 
-            <div class="row">
+                <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
 
-                <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+                    <h2>KANGARO CORP</h2>
+                    <p>Conectate con el mundo</p>
 
-                    <ul class="navbar-nav m-2">
-
-                        <li class="nav-item">
-
-                            <a href="" class="nav-link">Editar Cuenta</a>
-
-                        </li>
-
-                        <li class="nav-item">
-                            {% for user in users %}
-
-                                <a href="../crear_curriculum/{{user.nombresUs}}" class="nav-link">Crear CV</a>
-                                
-                            {% endfor %}
-                        </li>
-
-                    </ul>
-
-                </nav>
-
-            </div>
-
-        </div>
-
-        <!-- Contenido -->
-
-        <div class="container">
-
-            <h2 class="text-center mt-4">Curriculum Vitae</h2>
-
-            <div class="row p-4 m-3" style="border: 1px solid #000;">
-
-                <div class="col-md-12 d-flex align-items-center justify-content-center p-3" style="border: 1px solid #000;">
-
-                    <!-- Profile Picture -->
-                    {% for user in users %}
-                        <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
-                        <div class="container-data-user text-center">
-                            <p>{{user.nombresUs}}</p>
-                            <p>{{user.id_categoria_profesional}}</p>
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-
-                <div class="col-md-12 d-flex mt-3 p-3" style="border: 1px solid #000;">
-
-                    <div class="col-md-4 p-3">
-
-                        <h3>Contacto</h3>
-
-                        <hr style="border: 1px solid #ccc;">
-
-                        {% for user in users %}
-
-                            <p>Numero: {{user.telefono}}</p>
-                            <p>Correo: {{user.correoUs}}</p>
-                            <p>Direccion: {{user.direccion}}</p>
-
-                        {% endfor %}
-
-                        <hr style="border: 1px solid #ccc;">
-
-                        {% for curr in currl %}
-
-                            <h3>Idiomas</h3>
-                            <p>{{curr.idiomas}}</p>
-                            <hr style="border: 1px solid #ccc;">
-                            <h3>Conocimientos</h3>
-                            <p>{{curr.conocimientos}}</p>
-                            <hr style="border: 1px solid #ccc;">
-                            <h3>Habilidades</h3>
-                            <p>{{curr.habilidades}}</p>
-
-                        {% endfor %}
-
-                    </div>
-                    <div class="col-md-8 p-3">
-
-                        {% for curr in currl %}
-
-                            <h3>Perfil Profesional</h3>
-
-                            <hr style="border: 1px solid #ccc;">
-
-                            <p>{{curr.perfil_profesional}}</p>
-
-                            <h3>Formacion Academica</h3>
-
-                            <hr style="border: 1px solid #ccc;">
-
-                            {% for formacion in formaciones %}
-
-                            <div class="contenido-formacion m-3 p-3" style="border: 1px solid #000;">
-
-                                <h4>{{formacion.nombreInstitucion}}</h4>
-                                <p>{{formacion.grado_titulo}}</p>
-                                <p>{{formacion.carrera}} - {{formacion.inicio}} / {{formacion.fin}}</p>
-
-
-                            </div>
-
-                            {% endfor %}
-
-                            <h3>Experiencia Laboral</h3>
-                            <hr style="border: 1px solid #ccc;">
-
-                            {% for experiencia in experiencias %}
-
-                                <div class="contenido-experiencia m-3 p-3" style="border: 1px solid #000;">
-
-                                    <h5>{{experiencia.nombre_empresa}} / {{experiencia.inicio}} - {{experiencia.fin}}</h5>
-                                    <p>Cargo: {{experiencia.cargo_ocupado}}</p>
-                                    <h6>Tareas realizadas</h6>
-                                    {{experiencia.tarea_realizadas}}
-
-                                </div>
-
-                            {% endfor %}
-
-                        {% endfor %}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Footer -->
-
-        <div class="container">
-
-            <div class="row">
-
-                <footer class="bg-dark text-center text-white">
-
-                    <!-- Grid container -->
-            
-                    <!-- Section: Social media -->
-                    <section class="mt-2 mb-2">
-            
-                        <!-- Facebook -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                
-                        <!-- Twitter -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee;" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                
-                        <!-- Google -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39;" href="#!"
-                        role="button"><i class="fab fa-google"></i></a>
-                
-                        <!-- Instagram -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-                
-                        <!-- Linkedin -->
-                        <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca;" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-            
-                    </section>
-
-                </footer>
-
-                <!-- Copyright -->
-            
-                <div class="text-center p-3 text-white bg-dark" style="background-color: rgba(0, 0, 0, 0.2);">
-                    
-                    © 2023 Copyright:
-                
-                    <a class="text-muted" href="">kangaro.com</a>
-        
                 </div>
 
             </div>
@@ -247,5 +38,160 @@
     </div>
 
 </div>
+
+<div class="dropdown-menu" id="menu-dropdown" style="position: fixed; top: 0; left: 0; width: 250px; background-color: white; padding: 20px; height: 100vh;">
+    {% for user in users %}
+        <h4>{{user.nombresUs}}</h4>
+    {% endfor %}
+    <div class="dropdown-divider"></div>
+    {% for user in users %}
+        <a class="dropdown-item" href="../homepage_user/{{user.id_usuario}}">Ver Perfil</a>
+        <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Visualizar CV</a>
+    {% endfor %}
+    <a class="dropdown-item" href="../login">Cerrar sesion</a>
+    <div class="dropdown-divider"></div>
+    <!-- Enlace de Cerrar -->
+    <a class="dropdown-item" href="#" id="close-menu">Cerrar</a>
+</div>
+
+<!-- Navbar -->
+
+<div class="container">
+
+    <div class="row">
+
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+
+            <ul class="navbar-nav m-2">
+
+                <li class="nav-item">
+
+                    <a href="" class="nav-link">Editar Cuenta</a>
+
+                </li>
+
+                <li class="nav-item">
+                    {% for user in users %}
+
+                        <a href="../crear_curriculum/{{user.nombresUs}}" class="nav-link">Crear CV</a>
+                        
+                    {% endfor %}
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+
+<!-- Contenido -->
+
+<div class="container">
+
+    <h2 class="text-center mt-4">Curriculum Vitae</h2>
+
+    <div class="row p-4 m-3" style="border: 1px solid #000;">
+
+        <div class="col-md-12 d-flex align-items-center justify-content-center p-3" style="border: 1px solid #000;">
+
+            <!-- Profile Picture -->
+            {% for user in users %}
+                <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
+                <div class="container-data-user text-center">
+                    <p>{{user.nombresUs}}</p>
+                    <p>{{user.id_categoria_profesional}}</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="col-md-12 d-flex mt-3 p-3" style="border: 1px solid #000;">
+
+            <div class="col-md-4 p-3">
+
+                <h3>Contacto</h3>
+
+                <hr style="border: 1px solid #ccc;">
+
+                {% for user in users %}
+
+                    <p>Numero: {{user.telefono}}</p>
+                    <p>Correo: {{user.correoUs}}</p>
+                    <p>Direccion: {{user.direccion}}</p>
+
+                {% endfor %}
+
+                <hr style="border: 1px solid #ccc;">
+
+                {% for curr in currl %}
+
+                    <h3>Idiomas</h3>
+                    <p>{{curr.idiomas}}</p>
+                    <hr style="border: 1px solid #ccc;">
+                    <h3>Conocimientos</h3>
+                    <p>{{curr.conocimientos}}</p>
+                    <hr style="border: 1px solid #ccc;">
+                    <h3>Habilidades</h3>
+                    <p>{{curr.habilidades}}</p>
+
+                {% endfor %}
+
+            </div>
+            <div class="col-md-8 p-3">
+
+                {% for curr in currl %}
+
+                    <h3>Perfil Profesional</h3>
+
+                    <hr style="border: 1px solid #ccc;">
+
+                    <p>{{curr.perfil_profesional}}</p>
+
+                    <h3>Formacion Academica</h3>
+
+                    <hr style="border: 1px solid #ccc;">
+
+                    {% for formacion in formaciones %}
+
+                    <div class="contenido-formacion m-3 p-3" style="border: 1px solid #000;">
+
+                        <h4>{{formacion.nombreInstitucion}}</h4>
+                        <p>{{formacion.grado_titulo}}</p>
+                        <p>{{formacion.carrera}} - {{formacion.inicio}} / {{formacion.fin}}</p>
+
+
+                    </div>
+
+                    {% endfor %}
+
+                    <h3>Experiencia Laboral</h3>
+                    <hr style="border: 1px solid #ccc;">
+
+                    {% for experiencia in experiencias %}
+
+                        <div class="contenido-experiencia m-3 p-3" style="border: 1px solid #000;">
+
+                            <h5>{{experiencia.nombre_empresa}} / {{experiencia.inicio}} - {{experiencia.fin}}</h5>
+                            <p>Cargo: {{experiencia.cargo_ocupado}}</p>
+                            <h6>Tareas realizadas</h6>
+                            {{experiencia.tarea_realizadas}}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script type="text/javascript" src="{% static 'js/user.js' %}"></script>
 {% endblock content %}
