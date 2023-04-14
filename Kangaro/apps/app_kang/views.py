@@ -1,6 +1,6 @@
 from django.shortcuts import  render, redirect
 from .forms import LoginForm, RegisterFormUser, RegisterFormEmp, ExperienciaLaboralForm, FormacionAcademicaForm,CurriculumForm,PostForm,PostDetalleForm, AyudaForm
-from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud, Ayuda
+from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
