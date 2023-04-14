@@ -1,0 +1,77 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Crear Curriculum {%endblock%}
+{% block styles %}
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 88vh;">
+
+    <div class="row m-5">
+
+        <div class="container p-4" style="border: 1px solid #000;">
+
+            <div class="row m-auto">
+
+                <div class="col-md-12">
+
+                    <h2 class="text-center" style="text-decoration: underline;">Edicion de la experiencia laboral</h2>
+
+                    <form action="{% url 'actualizar_experiencia' id_exp %}" method="post">
+
+                        {% csrf_token %}
+
+                        <div class="form-group">
+        
+                            <label for="nombreEmpresa">Nombre Empresa: </label>
+                            <input type="text" name="nombreEmpresa" id="nombreEmpresa" value="{{nemp}}" class="form-control">
+        
+                        </div>
+        
+                        <div class="form-group">
+        
+                            <label for="cargo">Cargo Ocupado: </label>
+                            <input type="text" name="cargo" id="cargo" value="{{cargo}}" class="form-control">
+        
+                        </div>
+        
+                        <div class="form-group">
+        
+                            <label for="tarea">Tarea realizada: </label>
+                            <input type="text" name="tarea" id="tarea" value="{{tarea}}" class="form-control">
+        
+                        </div>
+        
+                        <div class="form-group">
+        
+                            <label for="inicio">Inicio: </label>
+                            <input type="text" name="inicio" id="inicio" value="{{inicio}}" class="form-control">
+        
+                        </div>
+
+                        <div class="form-group">
+        
+                            <label for="fin">Fin: </label>
+                            <input type="text" name="fin" id="fin" value="{{fin}}" class="form-control">
+        
+                        </div>
+        
+                        <input type="submit" class="btn btn-primary form-control mt-3">
+
+                        <a href="../experiencia_laboral/{{id_usuario}}" class="btn btn-danger form-control mt-2">Regresar</a>
+        
+                    </form>
+        
+        
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,77 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Crear Curriculum {%endblock%}
+{% block styles %}
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 88vh;">
+
+    <div class="row m-5">
+
+        <div class="container p-4" style="border: 1px solid #000;">
+
+            <div class="row m-auto">
+
+                <div class="col-md-12">
+
+                    <h2 class="text-center" style="text-decoration: underline;">Edicion de la formacion academica</h2>
+
+                    <form action="{% url 'actualizar_formacion' id_for %}" method="post">
+
+                        {% csrf_token %}
+
+                        <div class="form-group">
+        
+                            <label for="nombreInstitucion">Nombre Institucion: </label>
+                            <input type="text" name="nombreInstitucion" id="nombreInstitucion" value="{{ninstitucion}}" class="form-control">
+        
+                        </div>
+        
+                        <div class="form-group">
+        
+                            <label for="grado">Grado Titulo: </label>
+                            <input type="text" name="grado" id="grado" value="{{grado}}" class="form-control">
+        
+                        </div>
+        
+                        <div class="form-group">
+        
+                            <label for="carrera">Carrera: </label>
+                            <input type="text" name="carrera" id="carrera" value="{{carrera}}" class="form-control">
+        
+                        </div>
+        
+                        <div class="form-group">
+        
+                            <label for="inicio">Inicio: </label>
+                            <input type="text" name="inicio" id="inicio" value="{{inicio}}" class="form-control">
+        
+                        </div>
+
+                        <div class="form-group">
+        
+                            <label for="fin">Fin: </label>
+                            <input type="text" name="fin" id="fin" value="{{fin}}" class="form-control">
+        
+                        </div>
+        
+                        <input type="submit" class="btn btn-primary form-control mt-3">
+
+                        <a href="../formacion_academica/{{id_usuario}}" class="btn btn-danger form-control mt-2">Regresar</a>
+        
+                    </form>
+        
+        
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

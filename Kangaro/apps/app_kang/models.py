@@ -41,7 +41,7 @@ class Usuario(models.Model):
     dniUs = models.CharField(max_length=8)
     sexoUs = models.CharField(max_length=1)
     telefono = models.CharField(max_length=9)
-    direccion = models.CharField(max_length=255)
+    direccion = models.TextField()
     userUs = models.CharField(max_length=100)
     passwordUs = models.CharField(max_length=50)
     profileUser = models.ImageField(upload_to='profiles',default='profiles/defaultProfile.jpg',blank=True)
@@ -151,7 +151,7 @@ class Curriculum(models.Model):
 
     id_curriculum = models.BigAutoField(primary_key=True)
     id_usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
-    perfil_profesional = models.CharField(max_length=500)
+    perfil_profesional = models.TextField()
     idiomas = models.CharField(max_length=200)
     conocimientos = models.CharField(max_length=200)
     habilidades = models.CharField(max_length=200)
@@ -159,3 +159,11 @@ class Curriculum(models.Model):
     def __str__(self):
 
         return f"{self.id_usuario}"
+    
+class Ayuda(models.Model):
+
+    id_ayuda = models.BigAutoField(primary_key=True)
+    nombre_persona = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=9)
+    correo = models.EmailField(max_length=254)
+    problema = models.TextField()

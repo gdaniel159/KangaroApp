@@ -44,7 +44,7 @@
 
                     <ul class="d-flex justify-content-around p-3 mt-3">
                         {% for experiencia in experiencias %}
-                            <li><a href="" title="Haz clic para editar">{{experiencia}}</a></li>
+                            <li><a href="{% url 'edicio_experiencia' experiencia.id_experiencia %}" title="Haz clic para editar">{{experiencia}}</a></li>
                         {% endfor %}
                     </ul>
 

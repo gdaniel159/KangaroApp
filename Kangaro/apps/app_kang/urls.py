@@ -27,8 +27,12 @@ urlpatterns = [
     path('actualizar_datos/<int:id>',views.actualizar_datos, name='actualizar_datos'),
     path('actualizar_datos_empresa/<int:id>',views.actualizar_datos_emp, name='actualizar_datos_empresa'),
     path('actualizar_curriculum/<int:id>',views.actualizar_curriculum,name="actualizar_curriculum"),
+
     path('actualizar_formacion/<int:id>',views.actualizar_formacion,name='actualizar_formacion'),
     path('actualizar_experiencia/<int:id>',views.actualizar_experiencia,name="actualizar_experiencia"),
+
+    path('edicion_experiencia/<int:id>',views.edicion_experiencia,name="edicio_experiencia"),
+    path('edicion_formacion/<int:id>',views.edicion_formacion,name='edicion_formacion'),
 
     path('curriculum/<int:id>',views.curriculum, name='curriculum'),
     path('crear_curriculum/<int:id>', views.crear_curriculum, name="crear_curriculum"),

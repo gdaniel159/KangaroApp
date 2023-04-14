@@ -44,7 +44,7 @@
 
                     <ul class="d-flex justify-content-around p-3 mt-3">
                         {% for formacion in formaciones %}
-                            <li><a href="" title="Haz clic para editar">{{formacion}}</a></li>
+                            <li><a href="{% url 'edicion_formacion' formacion.id_formacion %}" title="Haz clic para editar">{{formacion}}</a></li>
                         {% endfor %}
                     </ul>
 

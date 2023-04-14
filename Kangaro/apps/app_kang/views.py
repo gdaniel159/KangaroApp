@@ -76,7 +76,9 @@ def user_homepage(request,id):
     pub_detalle = PostDetalle.objects.all()
 
     for post in pub_emp:
+
         post.empresa.image_url = post.empresa.profileEmp.url
+        # pds = Post.objects.filter(id_post=post.id_post)
 
     context = {
 
@@ -276,6 +278,46 @@ def experiencia_laboral(request,id):
 
     return render(request,'experiencia_laboral.html',context)
 
+# Edicio de la experiencia laboral despues de hacer clic en el enlace
+
+def edicion_experiencia(request,id):
+
+    exp = ExperienciaLaboral.objects.get(id_experiencia=id)
+
+    exp_data = ExperienciaLaboral.objects.get(id_experiencia=id)
+
+    context = {
+
+        'nemp':exp_data.nombre_empresa,
+        'cargo':exp_data.cargo_ocupado,
+        'tarea':exp_data.tarea_realizadas,
+        'inicio':exp_data.inicio,
+        'fin':exp_data.fin,
+        'id_exp':exp_data.id_experiencia,
+        'id_usuario':exp.id_usuario.id_usuario
+
+    }
+
+    return render(request,'edicion_experiencia.html',context)
+
+def edicion_formacion(request,id):
+
+    formacion = FormacionAcademica.objects.get(id_formacion=id)
+
+    context = {
+
+        'ninstitucion':formacion.nombreInstitucion,
+        'grado':formacion.grado_titulo,
+        'carrera':formacion.carrera,
+        'inicio':formacion.inicio,
+        'fin':formacion.fin,
+        'id_for':formacion.id_formacion,
+        'id_usuario':formacion.id_usuario.id_usuario
+
+    }
+
+    return render(request,'edicion_formacion.html',context)
+
 # Actualizar curriculum
 
 def actualizar_curriculum(request,id):
@@ -298,8 +340,8 @@ def actualizar_formacion(request,id):
 
     if request.method == 'POST':
 
-        objeto.nombreInstitucion = request.POST.get('nameInstitute', '')
-        objeto.grado_titulo = request.POST.get('grade', '')
+        objeto.nombreInstitucion = request.POST.get('nombreInstitucion', '')
+        objeto.grado_titulo = request.POST.get('grado', '')
         objeto.carrera = request.POST.get('carrera', '')
         objeto.inicio = request.POST.get('inicio', '')
         objeto.fin = request.POST.get('fin', '')
@@ -313,7 +355,7 @@ def actualizar_experiencia(request,id):
 
     if request.method == 'POST':
 
-        objeto.nombre_empresa = request.POST.get('empresa', '')
+        objeto.nombre_empresa = request.POST.get('nombreEmpresa', '')
         objeto.cargo_ocupado = request.POST.get('cargo', '')
         objeto.tarea_realizadas = request.POST.get('tarea', '')
         objeto.inicio = request.POST.get('inicio', '')
@@ -633,3 +675,7 @@ def detalles_post(request,id):
     }
 
     return render(request,'detalle_post.html',context)
+
+def help_send(request):
+
+    pass
