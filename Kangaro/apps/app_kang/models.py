@@ -167,3 +167,7 @@ class Ayuda(models.Model):
     telefono = models.CharField(max_length=9)
     correo = models.EmailField(max_length=254)
     problema = models.TextField()
+
+    def __str__(self):
+
+        return f"{self.nombre_persona}"

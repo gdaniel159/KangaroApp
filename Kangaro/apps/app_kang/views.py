@@ -1,6 +1,6 @@
 from django.shortcuts import  render, redirect
-from .forms import LoginForm, RegisterFormUser, RegisterFormEmp, ExperienciaLaboralForm, FormacionAcademicaForm,CurriculumForm,PostForm,PostDetalleForm
-from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud
+from .forms import LoginForm, RegisterFormUser, RegisterFormEmp, ExperienciaLaboralForm, FormacionAcademicaForm,CurriculumForm,PostForm,PostDetalleForm, AyudaForm
+from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud, Ayuda
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
@@ -18,7 +18,41 @@ def index(request):
 
 def ayuda(request):
 
-    return render(request,'Ayuda.html')
+    form = AyudaForm()
+
+    if request.method == 'POST':
+
+        form = AyudaForm(request.POST)
+
+        if form.is_valid():
+
+            nombre_persona = form.instance.nombre_persona
+            telefono = form.instance.telefono
+            correo = form.instance.correo
+            problema = form.instance.problema
+
+            email = 'kangaroservice29@gmail.com',
+
+            data = form.save(commit=True)
+            data.save()
+
+            correo = EmailMultiAlternatives(f"Mensaje de problema enviador por {nombre_persona}",f'{nombre_persona} con el número de telefono {telefono} y el correo {correo} nos menciona que: \n {problema}','KANGARO COMPANY',email)
+
+            correo.send()
+
+            return redirect('inicio')
+        
+        else:
+
+            return HttpResponse("Formulario mal enviado")   
+
+    context = {
+
+        'form':form
+
+    }
+
+    return render(request,'Ayuda.html',context)
 
 def contacto(request):
 
@@ -675,7 +709,3 @@ def detalles_post(request,id):
     }
 
     return render(request,'detalle_post.html',context)
-
-def help_send(request):
-
-    pass

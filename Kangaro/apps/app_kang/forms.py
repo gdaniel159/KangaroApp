@@ -1,5 +1,5 @@
 from django import forms
-from .models import Empresa,Usuario,Curriculum, ExperienciaLaboral, FormacionAcademica, Post, PostDetalle
+from .models import Empresa,Usuario,Curriculum, ExperienciaLaboral, FormacionAcademica, Post, PostDetalle, Ayuda
 
 class LoginForm(forms.Form):
 
@@ -119,3 +119,18 @@ class PostDetalleForm(forms.ModelForm):
     
         model = PostDetalle
         fields = ('titulo','descripcion')
+
+class AyudaForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+
+            super().__init__(*args, **kwargs)
+
+            for field_name, field in self.fields.items():
+                
+                field.widget.attrs['class'] = 'form-control'
+
+    class Meta:
+    
+        model = Ayuda
+        fields = ('nombre_persona','telefono','correo','problema')
