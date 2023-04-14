@@ -40,18 +40,24 @@
 </div>
 
 <div class="dropdown-menu" id="menu-dropdown" style="position: fixed; top: 0; left: 0; width: 250px; background-color: white; padding: 20px; height: 100vh;">
+
+    <!-- Enlace de Cerrar -->
+    <div class="close-container text-end" style="font-size: 20px;">
+
+        <a class="" href="#" id="close-menu" style="text-decoration: none; color: #000;">X</a>
+
+    </div>
+    <div class="dropdown-divider"></div>
     {% for user in users %}
         <h4>{{user.nombresUs}}</h4>
     {% endfor %}
     <div class="dropdown-divider"></div>
     {% for user in users %}
-        <a class="dropdown-item" href="../homepage_user/{{user.id_usuario}}">Ver Perfil</a>
-        <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Visualizar CV</a>
+        <a class="dropdown-item" href="../homepage_user/{{user.id_usuario}}">Pagina Principal</a>
+        <a class="dropdown-item" href="../curriculum/{{user.id_usuario}}">Ver perfil</a>
     {% endfor %}
     <a class="dropdown-item" href="../login">Cerrar sesion</a>
-    <div class="dropdown-divider"></div>
-    <!-- Enlace de Cerrar -->
-    <a class="dropdown-item" href="#" id="close-menu">Cerrar</a>
+    
 </div>
 
 <!-- Navbar -->
@@ -71,11 +77,13 @@
                 </li>
 
                 <li class="nav-item">
+
                     {% for user in users %}
 
-                        <a href="../crear_curriculum/{{user.nombresUs}}" class="nav-link">Crear CV</a>
+                        <a href="../crear_curriculum/{{user.id_usuario}}" class="nav-link">Crear CV</a>
                         
                     {% endfor %}
+
                 </li>
 
             </ul>

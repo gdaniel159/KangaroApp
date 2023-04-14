@@ -1,11 +1,14 @@
 from django.shortcuts import  render, redirect
-from .forms import LoginForm, RegisterFormUser, RegisterFormEmp, CurriculumForm,FormacionAcademicaForm, ExperienciaLaboralForm
+from .forms import LoginForm, RegisterFormUser, RegisterFormEmp, ExperienciaLaboralForm, FormacionAcademicaForm,CurriculumForm,PostForm,PostDetalleForm
 from .models import Usuario, Empresa, Administrador, Post, PostDetalle,Curriculum,FormacionAcademica, ExperienciaLaboral,Solicitud
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render, get_object_or_404
+from django.core.mail import EmailMultiAlternatives
+from django.utils import timezone
+from django.template.loader import get_template
 
 # Paginas estaticas con contenido predefinido
 
@@ -20,6 +23,31 @@ def ayuda(request):
 def contacto(request):
 
     return render(request,'Contactanos.html')
+
+def terminos(request):
+
+    return render(request,'tyc.html')
+
+def perfiles(request,id):
+
+    user = Usuario.objects.get(id_usuario=id)
+
+    curriculum = Curriculum.objects.get(id_usuario=id)
+
+    formacion = FormacionAcademica.objects.filter(id_usuario=id)
+
+    experiencia = ExperienciaLaboral.objects.filter(id_usuario=id)
+
+    context = {
+
+        'user':user,
+        'currl':curriculum,
+        'formacion':formacion,
+        'experiencia':experiencia
+
+    }
+
+    return render(request,'perfil.html',context)
 
 # Intranet del administador
 
@@ -69,11 +97,15 @@ def user_homepage(request,id):
 def emp_homepage(request,id):
 
     empMD = Empresa.objects.filter(id_empresa=id)
+
     pub_emp = Post.objects.filter(empresa=id)
-    post = Post.objects.get(id_post=id)
+
+    post = Post.objects.filter(id_post=id)
+    
     pub_detalle = PostDetalle.objects.filter(post__empresa__id_empresa=id)
 
     for post in pub_emp:
+
         post.empresa.image_url = post.empresa.profileEmp.url
 
     context = {
@@ -135,10 +167,13 @@ def curriculum(request,id):
 
 # Formulario para la creacion de un curriculum
 
-def crear_curriculum(request,nombre):
+def crear_curriculum(request,id):
+    
+    user = Usuario.objects.get(id_usuario=id)
+
+    curriculum = Curriculum.objects.filter(id_usuario=user.id_usuario)
 
     form = CurriculumForm()
-    user = Usuario.objects.get(nombresUs=nombre)
 
     if request.method == 'POST':
 
@@ -146,20 +181,22 @@ def crear_curriculum(request,nombre):
 
         if form.is_valid():
 
+            form.instance.id_usuario = Usuario.objects.get(id_usuario=id)
+
             data = form.save(commit=True)
             data.save()
 
-            return redirect('crear_curriculum')
+            return redirect('curriculum',user.id_usuario)
         
         else:
 
-            return HttpResponse("Registro Invalido")  
-
+            return HttpResponse("Registro Invalido")   
 
     context = {
-
+        
+        'users':user,
+        'curriculum':curriculum,
         'form':form,
-        'users':user
 
     }
 
@@ -167,15 +204,36 @@ def crear_curriculum(request,nombre):
 
 # Añadir informacion academica al CV
 
-def formacion_academica(request,nombre):
+def formacion_academica(request,id):
+
+    user = Usuario.objects.get(id_usuario=id)
 
     form = FormacionAcademicaForm()
-    user = Usuario.objects.get(nombresUs=nombre)
+
+    formacion = FormacionAcademica.objects.filter(id_usuario=id)
+
+    if request.method == 'POST':
+
+        form = FormacionAcademicaForm(request.POST)
+
+        if form.is_valid():
+
+            form.instance.id_usuario = Usuario.objects.get(id_usuario=id)
+
+            data = form.save(commit=True)
+            data.save()
+
+            return redirect('curriculum',user.id_usuario)
+        
+        else:
+
+            return HttpResponse("Registro Invalido")   
 
     context = {
 
+        'users':user,
         'form':form,
-        'users':user
+        'formaciones':formacion,
 
     }
 
@@ -183,19 +241,86 @@ def formacion_academica(request,nombre):
 
 # Añadir experiencia laboral al CV
 
-def experiencia_laboral(request,nombre):
+def experiencia_laboral(request,id):
 
+    user = Usuario.objects.get(id_usuario=id)
+    
     form = ExperienciaLaboralForm()
-    user = Usuario.objects.get(nombresUs=nombre)
+
+    experiencia = ExperienciaLaboral.objects.filter(id_usuario=id)
+
+    if request.method == 'POST':
+
+        form = ExperienciaLaboralForm(request.POST)
+
+        if form.is_valid():
+
+            form.instance.id_usuario = Usuario.objects.get(id_usuario=id)
+
+            data = form.save(commit=True)
+            data.save()
+
+            return redirect('curriculum',user.id_usuario)
+        
+        else:
+
+            return HttpResponse("Registro Invalido")   
 
     context = {
 
+        'users':user,
         'form':form,
-        'users':user
+        'experiencias':experiencia
 
     }
 
     return render(request,'experiencia_laboral.html',context)
+
+# Actualizar curriculum
+
+def actualizar_curriculum(request,id):
+
+    objeto = get_object_or_404(Curriculum, id_curriculum = id)
+
+    if request.method == 'POST':
+
+        objeto.perfil_profesional = request.POST.get('perfil', '')
+        objeto.idiomas = request.POST.get('idiomas', '')
+        objeto.conocimientos = request.POST.get('conocimientos', '')
+        objeto.habilidades = request.POST.get('habilidades', '')
+        objeto.save()
+
+        return redirect('curriculum',objeto.id_usuario.id_usuario)
+    
+def actualizar_formacion(request,id):
+
+    objeto = get_object_or_404(FormacionAcademica, id_formacion = id)
+
+    if request.method == 'POST':
+
+        objeto.nombreInstitucion = request.POST.get('nameInstitute', '')
+        objeto.grado_titulo = request.POST.get('grade', '')
+        objeto.carrera = request.POST.get('carrera', '')
+        objeto.inicio = request.POST.get('inicio', '')
+        objeto.fin = request.POST.get('fin', '')
+        objeto.save()
+
+        return redirect('formacion',objeto.id_usuario.id_usuario)
+    
+def actualizar_experiencia(request,id):
+    
+    objeto = get_object_or_404(ExperienciaLaboral, id_experiencia = id)
+
+    if request.method == 'POST':
+
+        objeto.nombre_empresa = request.POST.get('empresa', '')
+        objeto.cargo_ocupado = request.POST.get('cargo', '')
+        objeto.tarea_realizadas = request.POST.get('tarea', '')
+        objeto.inicio = request.POST.get('inicio', '')
+        objeto.fin = request.POST.get('fin', '')
+        objeto.save()
+
+        return redirect('experiencia',objeto.id_usuario.id_usuario)
 
 # Formulario para el Login de usuarios (Administrativos - Usuarios - Empresas)
 
@@ -249,7 +374,7 @@ def loginForm(request):
                 if emp:
 
                     emp_id = emp.id_empresa
-                    return redirect('homepage_emp',emp_id)
+                    return redirect('homepage_emp',id=emp_id)
 
                 else:
 
@@ -270,11 +395,27 @@ def registerForm(request):
     if request.method == 'POST':
 
         form1 = RegisterFormUser(request.POST, request.FILES)
+        timestamp = timezone.now
 
         if form1.is_valid():
 
+            nombreUs = form1.instance.nombresUs
+            userUs = form1.instance.userUs
+            dniUs = form1.instance.dniUs
+            sexoUs = form1.instance.sexoUs
+            correoUs = form1.instance.correoUs
+
+            mailsend = get_template('Mensaje_RegisterUS.html')
+
+            parametrosMail = mailsend.render({'NombresUs':nombreUs,'UserUs':userUs,'DniUs':dniUs,'SexoUs':sexoUs,'timestamp':timestamp})
+
             data = form1.save(commit=True)
             data.save()
+
+            correo = EmailMultiAlternatives("Usted ya ha sido registrado!!",'','KANGARO CORP',[correoUs])
+                
+            correo.attach_alternative(parametrosMail, "text/html")
+            correo.send()
 
             return redirect('../login')
         else:
@@ -316,8 +457,24 @@ def registerEmpresarial(request):
 
         if form.is_valid():
 
+            correoEmp = form.instance.correoEmp
+            nombreEmp = form.instance.nombreEmp
+            password = form.instance.passwordEmp
+            rucEmp = form.instance.rucEmp
+            userEmp = form.instance.userEmp
+            timestamp = timezone.now
+
+            mailsend = get_template('Mensaje_RegisterEMP.html')
+
+            parametrosMail = mailsend.render({'NombreEMP':nombreEmp,'PasswordEmp':password,'RucEMP':rucEmp,'UserEMP':userEmp,'timestamp':timestamp})
+
             data = form.save(commit=True)
             data.save()
+
+            correo = EmailMultiAlternatives("Su Empresa ya ha sido registrado!!",'','KANGARO CORP',[correoEmp])
+                
+            correo.attach_alternative(parametrosMail, "text/html")
+            correo.send()
 
             return redirect('intranet')
         
@@ -413,3 +570,66 @@ def solicitud(request,id_usuario,id_post):
     messages.success(request, '¡Se envió el "Me Interesa" correctamente!')
 
     return redirect(url)
+
+def realizar_post(request,id):
+
+    emp = Empresa.objects.get(id_empresa=id)
+
+    form = PostForm()
+
+    if request.method == 'POST':
+
+        form = PostForm(request.POST)
+
+        if form.is_valid():
+
+            form.instance.empresa = Empresa.objects.get(id_empresa=id)
+
+            data = form.save(commit=True)
+            data.save()
+
+            return redirect('homepage_emp',emp.id_empresa)
+        
+        else:
+
+            return HttpResponse("Registro Invalido")   
+        
+    context = {
+
+        'form':form,
+        'emp':emp
+
+    }
+
+    return render(request,'realizar_post.html',context)
+
+def detalles_post(request,id):
+
+    form = PostDetalleForm()
+    post = Post.objects.get(id_post=id)
+
+    if request.method == 'POST':
+
+        form = PostDetalleForm(request.POST)
+
+        if form.is_valid():
+
+            form.instance.post = Post.objects.get(id_post=id)
+
+            data = form.save(commit=True)
+            data.save()
+
+            return redirect('homepage_emp',post.empresa.id_empresa)
+        
+        else:
+
+            return HttpResponse("Registro Invalido")   
+        
+    context = {
+
+        'form':form,
+        'id_emp':post.empresa
+
+    }
+
+    return render(request,'detalle_post.html',context)

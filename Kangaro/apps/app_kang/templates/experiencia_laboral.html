@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
 
-    <div class="row m-4">
+    <div class="row m-5">
 
         <div class="container p-3" style="border: 1px solid #000;">
 
@@ -23,14 +23,31 @@
                         <form action="" method="post">
         
                             {% csrf_token %}
+                            
                             {{form.as_p}}
+                            
                             <input type="submit" value="Enviar" class="btn btn-primary form-control">
-                            <a href="../crear_curriculum/{{users}}" class="btn btn-warning form-control">Regresar</a>
+
+                            <a href="../crear_curriculum/{{users.id_usuario}}" class="btn btn-warning form-control">Regresar</a>
                 
                         </form>
         
                     </div>
         
+                </div>
+
+                <hr style="border: 1px solid #ccc; width: 80%; margin: 10px auto 10px auto;">
+
+                <div class="col-md-12">
+
+                    <h3 class="text-center">Listado de experiencias laborales</h3>
+
+                    <ul class="d-flex justify-content-around p-3 mt-3">
+                        {% for experiencia in experiencias %}
+                            <li><a href="" title="Haz clic para editar">{{experiencia}}</a></li>
+                        {% endfor %}
+                    </ul>
+
                 </div>
 
             </div>

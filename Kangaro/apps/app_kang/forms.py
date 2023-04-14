@@ -1,5 +1,5 @@
 from django import forms
-from .models import Empresa,Usuario,Curriculum, ExperienciaLaboral, FormacionAcademica
+from .models import Empresa,Usuario,Curriculum, ExperienciaLaboral, FormacionAcademica, Post, PostDetalle
 
 class LoginForm(forms.Form):
 
@@ -74,7 +74,7 @@ class ExperienciaLaboralForm(forms.ModelForm):
     class Meta:
     
         model = ExperienciaLaboral
-        fields = '__all__'
+        fields = ('nombre_empresa','cargo_ocupado','tarea_realizadas','inicio','fin')
 
 class FormacionAcademicaForm(forms.ModelForm):
 
@@ -88,4 +88,34 @@ class FormacionAcademicaForm(forms.ModelForm):
     class Meta:
     
         model = FormacionAcademica
-        fields = '__all__'
+        fields = ('nombreInstitucion','grado_titulo','carrera','inicio','fin')
+
+class PostForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            
+            field.widget.attrs['class'] = 'form-control'
+
+    class Meta:
+    
+        model = Post
+        fields = ('requerimientos',)
+
+class PostDetalleForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+
+            super().__init__(*args, **kwargs)
+
+            for field_name, field in self.fields.items():
+                
+                field.widget.attrs['class'] = 'form-control'
+
+    class Meta:
+    
+        model = PostDetalle
+        fields = ('titulo','descripcion')

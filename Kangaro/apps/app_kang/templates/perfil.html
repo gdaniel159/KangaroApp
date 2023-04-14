@@ -1,0 +1,141 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Perfil de Usuario {%endblock%}
+{% block styles %}
+<!-- <link rel="stylesheet" href="{% static 'css/inicio.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+<!-- Header -->
+        
+<div class="container">
+
+    <div class="row">
+
+        <div class="context-right text-center" style="margin-right: 50px; margin-top: 10px;">
+
+            <h2>KANGARO CORP</h2>
+            <p>Conectate con el mundo</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg d-flex justify-content-center align-items-center">
+
+            <ul class="navbar-nav m-3">
+
+                <!-- <li class="nav-item">
+
+                    <a href="../homepage_emp/{{id_emp}}" class="nav-link">Regresar a la pagina principal</a>
+
+                </li> -->
+
+                <li class="nav-item">
+
+                    <a href="../login" class="nav-link">Cerrar Sesion</a>
+
+                </li>
+                
+            </ul>
+
+        </nav>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <h2 class="text-center mt-4">Curriculum Vitae</h2>
+
+    <div class="row m-4">
+
+        <div class="col-md-12 d-flex align-items-center justify-content-center p-3" style="border: 1px solid #000;">
+
+            <!-- Profile Picture -->
+            <img src="{{user.profileUser.url}}" alt="" class="img-fluid" style="width: 80px; height: 80px; margin:0 20px 0 20px;">
+            <div class="container-data-user text-center">
+                <p>{{user.nombresUs}}</p>
+                <p>{{user.id_categoria_profesional}}</p>
+            </div>
+
+        </div>
+
+        <div class="col-md-12 d-flex mt-3 p-3 mb-3" style="border: 1px solid #000;">
+
+            <div class="col-md-4 p-3">
+
+                <h3>Contacto</h3>
+
+                <hr style="border: 1px solid #ccc;">
+
+                <p>Numero: {{user.telefono}}</p>
+                <p>Correo: {{user.correoUs}}</p>
+                <p>Direccion: {{user.direccion}}</p>
+
+                <hr style="border: 1px solid #ccc;">
+
+                <h3>Idiomas</h3>
+                <p>{{currl.idiomas}}</p>
+                <hr style="border: 1px solid #ccc;">
+                <h3>Conocimientos</h3>
+                <p>{{currl.conocimientos}}</p>
+                <hr style="border: 1px solid #ccc;">
+                <h3>Habilidades</h3>
+                <p>{{currl.habilidades}}</p>
+
+            </div>
+            <div class="col-md-8 p-3">
+
+                <h3>Perfil Profesional</h3>
+
+                <hr style="border: 1px solid #ccc;">
+
+                <p>{{curr.perfil_profesional}}</p>
+
+                <h3>Formacion Academica</h3>
+
+                <hr style="border: 1px solid #ccc;">
+
+                <div class="contenido-formacion m-3 p-3" style="border: 1px solid #000;">
+
+                    {% for forma in formacion %}
+                        <h4>{{forma.nombreInstitucion}}</h4>
+                        <p>{{forma.grado_titulo}}</p>
+                        <p>{{forma.carrera}} - {{forma.inicio}} / {{forma.fin}}</p>
+                    {% endfor %}
+
+                </div>
+
+                <h3>Experiencia Laboral</h3>
+                <hr style="border: 1px solid #ccc;">
+
+                <div class="contenido-experiencia m-3 p-3" style="border: 1px solid #000;">
+
+                    {% for exp in experiencia %}
+
+                        <h5>{{exp.nombre_empresa}} / {{exp.inicio}} - {{exp.fin}}</h5>
+                        <p>Cargo: {{exp.cargo_ocupado}}</p>
+                        <h6>Tareas realizadas</h6>
+                        {{exp.tarea_realizadas}}
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

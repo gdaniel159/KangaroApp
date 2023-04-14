@@ -20,27 +20,80 @@
 
                     <div class="col-md-6 m-auto" style="line-height: 75px;">
         
-                        <form action="" method="post">
-        
-                            {% csrf_token %}
-                            {{form.as_p}}
+                        {% if curriculum %}
 
-                            <input type="submit" value="Enviar" class="btn btn-primary form-control">
+                            {% for curr in curriculum %}
 
-                            <div class="btn-group text-center w-100 p-3">
-
-                                <a href="../formacion_academica/{{users}}" class="btn btn-warning w-50" style="margin-right: 10px;">Añadir Formacion academica</a>
-                                <a href="../experiencia_laboral/{{users}}" class="btn btn-warning w-50">Añadir Experiencia Laboral</a>
-
-                            </div> 
-                            
-                            <div class="back">
-
-                                <a href="../curriculum/{{users.id_usuario}}" class="btn btn-danger form-control">Regresar</a>
-
-                            </div>
+                                <form action="{% url 'actualizar_curriculum' curr.id_curriculum %}" method="post">
                 
-                        </form>
+                                    {% csrf_token %}
+
+                                    <div class="form-group mt-3">
+
+                                        <label for="perfil">Perfil Profesional: </label>
+                                        <textarea name="perfil" class="form-control" style="resize: none; height: 150px;">{{curr.perfil_profesional}}</textarea>
+                
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="idiomas">Idiomas: </label>
+                                        <input type="text" class="form-control" name="idiomas" id="idiomas" value="{{curr.idiomas}}">
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="conocimientos">Conocimientos: </label>
+                                        <input type="text" class="form-control" name="conocimientos" id="conocimientos" value="{{curr.conocimientos}}">
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label for="habilidades">Habilidades: </label>
+                                        <input type="text" class="form-control" name="habilidades" id="habilidades" value="{{curr.habilidades}}">
+
+                                    </div>
+
+                                    {% if curr %}
+
+                                        <input type="submit" value="Actualizar curriculum" class="btn btn-primary form-control">
+
+                                    {% else %}
+
+                                        <input type="submit" value="Crear Curriculum" class="btn btn-primary form-control">
+                                    
+                                    {% endif %}
+
+                                    <div class="btn-group text-center w-100 p-3">
+
+                                        <a href="../formacion_academica/{{users.id_usuario}}" class="btn btn-warning w-50" style="margin-right: 10px;">Añadir Formacion academica</a>
+                                        <a href="../experiencia_laboral/{{users.id_usuario}}" class="btn btn-warning w-50">Añadir Experiencia Laboral</a>
+
+                                    </div> 
+                                    
+                                    <div class="back">
+
+                                        <a href="../curriculum/{{users.id_usuario}}" class="btn btn-danger form-control">Regresar</a>
+
+                                    </div>
+                        
+                                </form>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            <form action="" method="post">
+
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <input type="submit" value="Crear Curriculum" class="btn btn-primary form-control">
+
+                            </form>
+
+                        {% endif %}
         
                     </div>
         

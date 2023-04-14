@@ -61,7 +61,11 @@
 
                 <li class="nav-item">
 
-                    <a href="" class="nav-link">Reazilar Post</a>
+                    {% for empresa in emps %}
+
+                        <a href="{% url 'realizar_post' empresa.id_empresa %}" class="nav-link">Reazilar Post</a>
+
+                    {% endfor %}
 
                 </li>
 
@@ -143,9 +147,10 @@
                             {% endif %}
 
                         {% endfor %}
-
-                        <a href="" class="btn btn-primary">Leer post completo</a>
+                        
                     </div>
+                    
+                    <a href="{% url 'post_detalle' publicacion.id_post %}" class="btn btn-warning mt-3 form-control">Ingrese los detalles del post</a>
 
                 </div>
 

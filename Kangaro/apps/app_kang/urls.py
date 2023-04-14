@@ -8,6 +8,7 @@ urlpatterns = [
 
     path('ayuda/',views.ayuda, name='ayuda'),
     path('contacto/',views.contacto,name="contacto"),
+    path('terminos/',views.terminos,name='terminos'),
 
     path('login/',views.loginForm,name='login_usuarios'),
     path('register/', views.registerForm, name='register_usuarios'),
@@ -25,14 +26,23 @@ urlpatterns = [
     
     path('actualizar_datos/<int:id>',views.actualizar_datos, name='actualizar_datos'),
     path('actualizar_datos_empresa/<int:id>',views.actualizar_datos_emp, name='actualizar_datos_empresa'),
+    path('actualizar_curriculum/<int:id>',views.actualizar_curriculum,name="actualizar_curriculum"),
+    path('actualizar_formacion/<int:id>',views.actualizar_formacion,name='actualizar_formacion'),
+    path('actualizar_experiencia/<int:id>',views.actualizar_experiencia,name="actualizar_experiencia"),
 
     path('curriculum/<int:id>',views.curriculum, name='curriculum'),
-    path('crear_curriculum/<str:nombre>', views.crear_curriculum, name="crear_curriculum"),
+    path('crear_curriculum/<int:id>', views.crear_curriculum, name="crear_curriculum"),
 
-    path('formacion_academica/<str:nombre>',views.formacion_academica, name="formacion"),
-    path('experiencia_laboral/<str:nombre>',views.experiencia_laboral, name="experiencia"),
+    path('formacion_academica/<int:id>',views.formacion_academica, name="formacion"),
+    path('experiencia_laboral/<int:id>',views.experiencia_laboral, name="experiencia"),
 
     path('inspeccionar/<int:id>',views.inspeccionar,name="inspeccion"),
-    path('enviar_solicitud/<int:id_usuario>/<int:id_post>',views.solicitud,name="solicitud")
+    path('enviar_solicitud/<int:id_usuario>/<int:id_post>',views.solicitud,name="solicitud"),
+
+    path('perfil/<int:id>',views.perfiles,name="perfil"),
+
+    path('realizar_post/<int:id>',views.realizar_post,name="realizar_post"),
+
+    path('post_detalle/<int:id>',views.detalles_post,name='post_detalle'),
 
 ]

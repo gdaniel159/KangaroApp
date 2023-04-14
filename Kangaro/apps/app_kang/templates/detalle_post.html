@@ -1,0 +1,32 @@
+{% extends "contenido.html" %}
+{% load static %}
+{% block title %} Kangaro Company {%endblock%}
+{% block styles %}
+    <!-- <link rel="stylesheet" href="{% static 'css/user.css' %}"> -->
+{% endblock %}
+{% block content %}
+
+<div class="container d-flex align-items-center justify-content-center" style="height: 88vh;">
+
+    <div class="row">
+
+        <h1 class="text-center">Creacion de post</h1>
+
+        <div class="col-md-12 m-auto p-3 mb-4">
+
+            <form action="" method="post">
+
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Crear Detalles" class="btn btn-primary form-control">
+                <a href="{% url 'homepage_emp' id_emp.id_empresa %}" class="btn btn-warning form-control mt-3">Regresar</a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
